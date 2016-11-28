@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:define name="title">
+        <h:outputText value="#{bundle.ListMerchantTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <p:dataTable value="#{merchantController.them}" var="item" 
+                         paginator="true" rows="10" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15,20">      
+                <f:facet name="header">  
+                    View Merchant  
+                </f:facet>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListMerchantTitle_id}" style="float: left"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}" style="float: left"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListMerchantTitle_name}" style="float: left"/>
+                    </f:facet>
+                    <h:outputText value="#{item.name}" style="float: left"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="USD" style="float: left"/>
+                    </f:facet>
+                    <h:outputText value="#{item.usd}" style="float: left"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Status" style="float: left"/>
+                    </f:facet>
+                    <h:outputText value="#{item.statusid.description}" style="float: left"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Merchant Rate" style="float: left"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rateid.merchantrate}" style="float: left"/>
+                </p:column>               
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListMerchantTitle_username}" style="float: left"/>
+                    </f:facet>
+                    <h:outputText value="#{item.username}" style="float: left"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListMerchantTitle_contactperson}" style="float: left"/>
+                    </f:facet>
+                    <h:outputText value="#{item.contactperson}" style="float: left"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListMerchantTitle_email}" style="float: left"/>
+                    </f:facet>
+                    <h:outputText value="#{item.email}" style="float: left"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListMerchantTitle_phone}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.phone}" style="float: left"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListMerchantTitle_mobile}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.mobile}"/>
+                </p:column>                
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="&nbsp;"/>
+                    </f:facet>
+                    <h:commandLink action="#{merchantController.prepareView}" value="#{bundle.ListMerchantViewLink}" class="viewbutton"/>
+                    <h:outputText value=" "/>
+                    <h:commandLink action="Password" value="Password"/>                            
+                </p:column>
+            </p:dataTable>
+            <br />
+            <br/>
+            <h:commandLink action="#{merchantController.prepareCreate}" value="#{bundle.ListMerchantCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListMerchantIndexLink}" action="/index" immediate="true" />
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+

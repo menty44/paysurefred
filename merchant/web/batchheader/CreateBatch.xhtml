@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">    
+
+    <ui:define name="title">    
+        Create Batch Header
+
+    </ui:define>    
+    <ui:define name="body" >        
+        <h:outputStylesheet library="css" name="jquery-ui-1.8.6.custom.css"/>         
+        <!--<p:lightBox iframe="true">  
+            <h:outputLink value="https://epayments.paysure.co.ke/merchant/web/login.xhtml" title="PrimeFaces HomePage">  
+                <h:outputText value="PrimeFaces HomePage"/>  
+            </h:outputLink>  
+        </p:lightBox>--> 
+        <h:form id="DataCreateForm" style="width: 500px; margin: 0 auto;">
+            <p:panel header="Create Batch Header" footer="Paysure Limited" style="margin-top: 70px;" >
+                <h:panelGroup id="display">
+                    <p:tooltip for="hname" value="Name for Batch Header to be Created" />
+                    <p:tooltip for="desc" value="Description for Batch Header to be Created" />
+                    <p:tooltip for="options" value="Currency for Batch Header to be Created" />
+                    <p:panelGrid columns="3" >
+                        <p:outputLabel value="Batch Name : "/>
+                        <p:inputText id="hname" value="#{batchheaderController.bhname}" required="true" requiredMessage="Batch Header Name Missing"/>
+                        <p:message for="hname" display="icon" />
+                        <p:outputLabel value="Description : "/>
+                        <p:inputText id="desc" value="#{batchheaderController.bdesc}" required="true" requiredMessage="Batch Header Description Missing"/>
+                        <p:message for="desc" display="icon" />
+                        <p:outputLabel value="Currency : "/>
+                        <p:panelGrid columns="2" style="width: 200px; height: 20px; margin: 0 auto;">
+                            <h:selectOneRadio id="options" value="#{batchheaderController.curr}" required="true" requiredMessage="Batch Header Currency Missing">                        
+                                <f:selectItem itemLabel="KES" itemValue="KES" />  
+                                <f:selectItem itemLabel="USD" itemValue="USD" />                      
+                            </h:selectOneRadio>                            
+                        </p:panelGrid> 
+                        <p:message for="options" display="icon" />
+                        <p:outputLabel />
+                        <h:commandButton value="Save" action="#{batchheaderController.saveBatch}"/>
+                        <h:commandButton value="Close" immediate="true" action="#{batchheaderController.goBack}" style="margin-left: -250px;"/>
+                    </p:panelGrid>
+                </h:panelGroup>                               
+            </p:panel>
+        </h:form>                     
+
+    </ui:define>
+
+</ui:composition>

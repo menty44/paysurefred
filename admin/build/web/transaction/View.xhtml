@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTransactionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTransactionLabel_id}"/>
+                    <h:outputText value="#{transactionController.selected.id}" title="#{bundle.ViewTransactionTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewTransactionLabel_merchantname}"/>
+                    <h:outputText value="#{transactionController.selected.merchantname}" title="#{bundle.ViewTransactionTitle_merchantname}"/>
+                    <h:outputText value="#{bundle.ViewTransactionLabel_debitcredit}"/>
+                    <h:outputText value="#{transactionController.selected.debitcredit}" title="#{bundle.ViewTransactionTitle_debitcredit}"/>
+                    <h:outputText value="#{bundle.ViewTransactionLabel_amount}"/>
+                    <h:outputText value="#{transactionController.selected.amount}" title="#{bundle.ViewTransactionTitle_amount}"/>
+                    <h:outputText value="#{bundle.ViewTransactionLabel_commission}"/>
+                    <h:outputText value="#{transactionController.selected.commission}" title="#{bundle.ViewTransactionTitle_commission}"/>
+                    <h:outputText value="#{bundle.ViewTransactionLabel_refno}"/>
+                    <h:outputText value="#{transactionController.selected.refno}" title="#{bundle.ViewTransactionTitle_refno}"/>
+                    <h:outputText value="#{bundle.ViewTransactionLabel_description}"/>
+                    <h:outputText value="#{transactionController.selected.description}" title="#{bundle.ViewTransactionTitle_description}"/>
+                    <h:outputText value="#{bundle.ViewTransactionLabel_created}"/>
+                    <h:outputText value="#{transactionController.selected.created}" title="#{bundle.ViewTransactionTitle_created}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTransactionLabel_modified}"/>
+                    <h:outputText value="#{transactionController.selected.modified}" title="#{bundle.ViewTransactionTitle_modified}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTransactionLabel_statusid}"/>
+                    <h:outputText value="#{transactionController.selected.statusid.description}" title="#{bundle.ViewTransactionTitle_statusid}"/>
+                    <h:outputText value="#{bundle.ViewTransactionLabel_responsecodeid}"/>
+                    <h:outputText value="#{transactionController.selected.responsecodeid.description}" title="#{bundle.ViewTransactionTitle_responsecodeid}"/>
+                    <h:outputText value="#{bundle.ViewTransactionLabel_merchantid}"/>
+                    <h:outputText value="#{transactionController.selected.merchantid.name}" title="#{bundle.ViewTransactionTitle_merchantid}"/>
+                </h:panelGrid>
+
+                <h:commandLink action="#{transactionController.prepareList}" value="#{bundle.ViewTransactionShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewTransactionIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

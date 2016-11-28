@@ -1,0 +1,151 @@
+GlassFish - JDBC Connection Pools
+
+- Create/configure JDBC Connection Pool by going to Resources > JDBC > JDBC Connection Pools 
+
+(i) Create adminPool
+
+(Step 1 of 2) Click the New button > New JDBC Connection Pool
+
+- Pool Name: adminPool
+- Resource Type: javax.sql.ConnectionPoolDataSource
+- Database Vendor: Postgresql
+- Datasource Classname: org.postgresql.ds.PGConnectionPoolDataSource
+
+Click Next > Click Finish
+
+(Step 2 of 2) Click > Additional Properties
+
+- DatabaseName: paygate
+- User: admin
+- Password: admin
+- LogLevel: 0
+- ServerName: localhost
+- Ssl: false
+- ProtocolVersion: 0
+- TcpKeepAlive: false
+- SocketTimeout: 0
+- PortNumber: 0
+- LoginTimeout: 0
+- UnknownLength: 2147483647
+- PrepareThreshold: 5
+
+Click Save
+
+(ii) Create merchantPool
+
+(Step 1 of 2) Click the New button > New JDBC Connection Pool
+
+- Pool Name: merchantPool
+- Resource Type: javax.sql.ConnectionPoolDataSource
+- Database Vendor: Postgresql
+- Datasource Classname: org.postgresql.ds.PGConnectionPoolDataSource
+
+Click Next > Click Finish
+
+(Step 2 of 2) Click > Additional Properties
+
+- DatabaseName: paygate
+- User: merchant
+- Password: merchant
+- LogLevel: 0
+- ServerName: localhost
+- Ssl: false
+- ProtocolVersion: 0
+- TcpKeepAlive: false
+- SocketTimeout: 0
+- PortNumber: 0
+- LoginTimeout: 0
+- UnknownLength: 2147483647
+- PrepareThreshold: 5
+
+Click Save
+
+(iii) Create paypool
+
+(Step 1 of 2) Click the New button > New JDBC Connection Pool
+
+- Pool Name: paypool
+- Resource Type: javax.sql.ConnectionPoolDataSource
+- Database Vendor: Postgresql
+- Datasource Classname: org.postgresql.ds.PGConnectionPoolDataSource
+
+Click Next > Click Finish
+
+(Step 2 of 2) Click > Additional Properties
+
+- DatabaseName: paygate
+- User: payuser
+- Password: paypass
+- LogLevel: 0
+- ServerName: localhost
+- Ssl: false
+- ProtocolVersion: 0
+- TcpKeepAlive: false
+- SocketTimeout: 0
+- PortNumber: 0
+- LoginTimeout: 0
+- UnknownLength: 2147483647
+- PrepareThreshold: 5
+
+Click Save
+
+(iv) Create PaygatePool
+
+(Step 1 of 2) Click the New button > New JDBC Connection Pool
+
+- Pool Name: PaygatePool
+- Resource Type: javax.sql.ConnectionPoolDataSource
+- Database Vendor: Postgresql
+- Datasource Classname: org.postgresql.ds.PGConnectionPoolDataSource
+
+Click Next > Click Finish
+
+(Step 2 of 2) Click > Additional Properties
+
+- DatabaseName: paygate
+- User: payuser
+- Password: paypass
+- LogLevel: 0
+- ServerName: localhost
+- Ssl: false
+- ProtocolVersion: 0
+- TcpKeepAlive: false
+- SocketTimeout: 0
+- PortNumber: 0
+- LoginTimeout: 0
+- UnknownLength: 2147483647
+- PrepareThreshold: 5
+
+Click Save
+
+(v) Create post-gre-sql_paygate_payuserPool
+
+(Step 1 of 2) Click the New button > New JDBC Connection Pool
+
+- Pool Name: post-gre-sql_paygate_payuserPool
+- Resource Type: java.sql.DataSource
+- Database Vendor: Postgresql
+- Datasource Classname: org.postgresql.ds.PGSimpleDataSource
+
+Click Next > Click Finish
+
+(Step 2 of 2) Click > Additional Properties
+
+- DatabaseName: paygate
+- User: payuser
+- Password: paypass
+- driverClass: org.postgresql.Driver
+- URL: jdbc:postgresql://localhost/paygate
+- LogLevel: 0
+- ServerName: localhost
+- Ssl: false
+- ProtocolVersion: 0
+- TcpKeepAlive: false
+- SocketTimeout: 0
+- PortNumber: 0
+- LoginTimeout: 0
+- UnknownLength: 2147483647
+- PrepareThreshold: 5
+
+Click Save
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateConfigTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+
+                    <h:outputLabel value="#{bundle.CreateConfigLabel_config}" for="config" />
+                    <h:inputText id="config" value="#{configController.selected.config}" title="#{bundle.CreateConfigTitle_config}" />
+                    <h:outputLabel value="#{bundle.CreateConfigLabel_value}" for="value" />
+                    <h:inputText id="value" value="#{configController.selected.value}" title="#{bundle.CreateConfigTitle_value}" />
+                    <h:outputLabel value="#{bundle.CreateConfigLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{configController.selected.description}" title="#{bundle.CreateConfigTitle_description}" />
+
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{configController.create}" value="#{bundle.CreateConfigSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{configController.prepareList}" value="#{bundle.CreateConfigShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateConfigIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

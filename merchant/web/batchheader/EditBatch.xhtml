@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./../template.xhtml">
+
+            <ui:define name="title">
+                Edit Batch Header
+            </ui:define>
+
+            <ui:define name="body">
+                <link rel="stylesheet" media="all" type="text/css" href="/merchant/web/css/jquery-ui-1.8.6.custom.css" />
+
+                <h:form style="margin-top: 80px; width: 470px; margin-left: 250px;">
+                    <p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel">  
+                        <f:facet name="start">  
+                            <h:graphicImage value="/web/images/ajaxloading.gif" />  
+                        </f:facet> 
+                        <f:facet name="complete">  
+                            <h:outputText value="" />  
+                        </f:facet>  
+                    </p:ajaxStatus> 
+                    <p:panel header="Edit Batch Header" footer="Paysure Limited" >
+                        <p:panelGrid columns="2">                    
+                            <h:outputLabel value="Batch Name :" style="float: right;"  />
+                            <p:inputText value="#{batchheaderController.header.batchname}" />                    
+                            <h:outputLabel value="Description :" style="float: right;"  />
+                            <p:inputText value="#{batchheaderController.header.description}" style="float: left;" />  
+                            <p:outputLabel />
+                            <p:panelGrid columns="2">
+                                <p:commandButton value="Update" action="#{batchheaderController.updateHeader}" icon="ui-icon-circle-check" style="margin-left: 80px; " />
+                            <p:commandButton value="Cancel" action="Header.xhtml?faces-redirect=true" icon="ui-icon-closethick" />
+                            </p:panelGrid>                            
+                        </p:panelGrid>  
+                    </p:panel>                                              
+                </h:form>                
+            </ui:define>            
+        </ui:composition>
+
+    </body>
+</html>

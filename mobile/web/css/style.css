@@ -1,0 +1,49 @@
+/* 
+    Document   : style
+    Created on : Nov 12, 2013, 10:44:30 AM
+    Author     : Joseph
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.ui-btn-text{
+    color: red;    
+}
+
+.ui-btn-hidden{
+    background-color: green;
+}
+
+.ui-btn-success{
+    background-color: green;
+}
+
+.ui-btn-corner-all{
+    background-color:#51a351;
+    
+}
+
+div.ui-btn.ui-shadow.ui-btn-corner-all.ui-submit.ui-btn-up-c{    
+    width: 100%;
+}
+
+tr{
+        
+}
+
+td {
+    width: 60px;
+}
+
+table{
+    width: 235px;
+}
+
+.ui-input-text{
+    width: 120px;
+}
+

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <!-- Use Documents Saved as *.xhtml -->
+    <context-param>
+        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-value>.xhtml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <filter>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>        
+    </filter>
+    <filter-mapping>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>        
+    </filter-mapping>    
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>    
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+        <url-pattern>/web/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>20</session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>web/transactions/index.xhtml</welcome-file>
+    </welcome-file-list>
+    <error-page>
+        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+        <location>/login.xhtml</location>
+    </error-page>
+    <security-constraint>
+        <display-name>Merchant Constraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>MerchantConstraint</web-resource-name>
+            <description>Merchant Constraint</description>
+            <url-pattern>/web/transactions/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>PaymentRequest</web-resource-name>
+            <description>Payment Request</description>
+            <url-pattern>/web/purchase/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>TokensConstarint</web-resource-name>
+            <description/>
+            <url-pattern>/web/token/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>Merchant Constraint</description>
+            <role-name>1</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>merchantRealm</realm-name>
+        <form-login-config>
+            <form-login-page>/web/index.xhtml</form-login-page>
+            <form-error-page>/web/loginError.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description>Merchant Role</description>
+        <role-name>1</role-name>
+    </security-role>
+</web-app>

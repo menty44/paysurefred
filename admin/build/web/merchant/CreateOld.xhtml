@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <!--<h:outputText value="#{bundle.CreateMerchantTitle}"></h:outputText>-->
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form styleClass="merchantform">
+                <!--<h:panelGrid columns="4">-->
+                <p:dataGrid var="merchant" value="#{bundle.CreateMerchantTitle_created}" columns="3"  
+                            rows="12" >  
+                    <p:panel header="Create Merchant" style="text-align:center">    
+                        <h:panelGrid columns="4" width="65%" style="text-align: left">
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_username}" for="username" />
+                            <h:inputText id="username" value="#{merchantController.selected.username}" title="#{bundle.CreateMerchantTitle_username}" />
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_statusid}" for="statusid" />
+                            <h:selectOneMenu id="statusid" value="#{merchantController.selected.statusid}" title="#{bundle.CreateMerchantTitle_statusid}" >
+                                <f:selectItems value="#{statusController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_postcode}" for="postcode" />
+                            <h:inputText id="postcode" value="#{merchantController.selected.postcode}" title="#{bundle.CreateMerchantTitle_postcode}" />
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_id}" for="id" />
+                            <h:inputText id="id" value="#{merchantController.selected.id}" title="#{bundle.CreateMerchantTitle_id}" required="true" requiredMessage="#{bundle.CreateMerchantRequiredMessage_id}"/>
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_street}" for="street" />
+                            <h:inputText id="street" value="#{merchantController.selected.street}" title="#{bundle.CreateMerchantTitle_street}" />
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_merchantidentifier}" for="merchantidentifier" />
+                            <h:inputText id="merchantidentifier" value="#{merchantController.selected.merchantidentifier}" title="#{bundle.CreateMerchantTitle_merchantidentifier}" />
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_city}" for="city" />
+                            <h:inputText id="city" value="#{merchantController.selected.city}" title="#{bundle.CreateMerchantTitle_city}" />
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_terminalid}" for="terminalid" />
+                            <h:inputText id="terminalid" value="#{merchantController.selected.terminalid}" title="#{bundle.CreateMerchantTitle_terminalid}" />
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_state}" for="state" />
+                            <h:inputText id="state" value="#{merchantController.selected.state}" title="#{bundle.CreateMerchantTitle_state}" />
+                            <h:outputLabel value="#{bundle.EditMerchantLabel_rateid}" for="rateid" />
+                            <h:selectOneMenu id="rateid" value="#{merchantController.selected.rateid}" title="#{bundle.EditMerchantTitle_rateid}" >
+                                <f:selectItems value="#{rateController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_countryid}" for="countryid" />
+                            <h:selectOneMenu id="countryid" value="#{merchantController.selected.countryid}" title="#{bundle.CreateMerchantTitle_countryid}" >
+                                <f:selectItems value="#{countryController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_bankcode}" for="bankcode" />
+                            <h:inputText id="bankcode" value="#{merchantController.selected.bankcode}" title="#{bundle.CreateMerchantTitle_bankcode}" />
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_contactperson}" for="contactperson" />
+                            <h:inputText id="contactperson" value="#{merchantController.selected.contactperson}" title="#{bundle.CreateMerchantTitle_contactperson}" />
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_branchcode}" for="branchcode" />
+                            <h:inputText id="branchcode" value="#{merchantController.selected.branchcode}" title="#{bundle.CreateMerchantTitle_branchcode}" />
+
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_email}" for="email" />
+                            <h:inputText id="email" value="#{merchantController.selected.email}" title="#{bundle.CreateMerchantTitle_email}" />
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_bankaccount}" for="bankaccount" />
+                            <h:inputText id="bankaccount" value="#{merchantController.selected.bankaccount}" title="#{bundle.CreateMerchantTitle_bankaccount}" />   
+                            
+                            
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_phone}" for="phone" />
+                            <h:inputText id="phone" value="#{merchantController.selected.phone}" title="#{bundle.CreateMerchantTitle_phone}" />
+                            <h:outputLabel value="Account Code"/>
+                            <h:inputText/>
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_mobile}" for="mobile" />
+                            <h:inputText id="mobile" value="#{merchantController.selected.mobile}" title="#{bundle.CreateMerchantTitle_mobile}" />
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_eftbalance}" for="Eft Balance"/>
+                            <h:inputText id="Eftbalance" value="#{merchantController.selected.eft}" title="#{bundle.CreateMerchantTitle_eftbalance}"/>
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_name}" for="name" />
+                            <h:inputText id="name" value="#{merchantController.selected.name}" title="#{bundle.CreateMerchantTitle_name}" />   
+                            
+                            
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_created}" for="created" />
+                            <h:inputText id="created" value="#{merchantController.selected.created}" title="#{bundle.CreateMerchantTitle_created}" >
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:inputText>
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_ipaddress}" for="ipaddress" />
+                            <h:inputText id="ipaddress" value="#{merchantController.selected.ipaddress}" title="#{bundle.CreateMerchantTitle_ipaddress}" />
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_modified}" for="modified" />
+                            <h:inputText id="modified" value="#{merchantController.selected.modified}" title="#{bundle.CreateMerchantTitle_modified}" >
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:inputText>
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_key}" for="key" />
+                            <h:inputText id="key" value="#{merchantController.selected.key}" title="#{bundle.CreateMerchantTitle_key}" />
+                            <h:outputLabel value="#{bundle.CreateMerchantLabel_password}" for="password" />
+                            <h:inputText id="password" value="#{merchantController.selected.password}" title="#{bundle.CreateMerchantTitle_password}" />
+                        </h:panelGrid>
+                    </p:panel>
+                </p:dataGrid>
+
+                <br />
+                <h:commandLink action="#{merchantController.create}" value="#{bundle.CreateMerchantSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{merchantController.prepareList}" value="#{bundle.CreateMerchantShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateMerchantIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

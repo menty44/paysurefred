@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only">
+        <Node id="login.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="*" x="150" y="1200" zoom="true"/>
+        <Node id="web/index.xhtml" x="400" y="900" zoom="true"/>
+    </Scope>
+    <Scope Scope="Project">
+        <Node id="category/Create.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="transactiontype/Edit.xhtml" x="1650" y="450" zoom="true"/>
+        <Node id="transactiontype/List.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="gender/Edit.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="purchase/Show.xhtml" x="1900" y="450" zoom="true"/>
+        <Node id="batchitem/index.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="merchant/Edit.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="purchase/Edit.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="status/Edit.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="gender/Create.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="gender/View.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="batchheader/show1.xhtml" x="2650" y="150" zoom="true"/>
+        <Node id="batchheader/display.xhtml" x="150" y="1350" zoom="true"/>
+        <Node id="batchheader/Pass.xhtml" x="900" y="1050" zoom="true"/>
+        <Node id="batchitem/Edit.xhtml" x="400" y="1350" zoom="true"/>
+        <Node id="batchitem/Create.xhtml" x="1150" y="900" zoom="true"/>
+        <Node id="status/Create.xhtml" x="150" y="600" zoom="false"/>
+        <Node id="gender/List.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="purchase/List.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="batchheader/Test.xhtml" x="1400" y="750" zoom="true"/>
+        <Node id="batchheader/View.xhtml" x="900" y="900" zoom="true"/>
+        <Node id="*" x="150" y="1200" zoom="false"/>
+        <Node id="purchase/View.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="batchitem/Show.xhtml" x="2400" y="150" zoom="true"/>
+        <Node id="transactiontype/View.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="batchheader/Edit.xhtml" x="400" y="1200" zoom="true"/>
+        <Node id="purchase/Create.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="rate/List.xhtml" x="2150" y="150" zoom="true"/>
+        <Node id="category/Edit.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="country/Edit.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="rate/Create.xhtml" x="1400" y="600" zoom="true"/>
+        <Node id="template.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="loginError.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="batchitem/View.xhtml" x="2150" y="300" zoom="true"/>
+        <Node id="transactions/index.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="batchheader/Show.xhtml" x="1650" y="600" zoom="true"/>
+        <Node id="status/View.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="country/Create.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="country/View.xhtml" x="1650" y="300" zoom="true"/>
+        <Node id="status/List.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="batchitem/List.xhtml" x="150" y="1500" zoom="true"/>
+        <Node id="merchant/List.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="batchheader/input.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="batchheader/Create.xhtml" x="1150" y="750" zoom="true"/>
+        <Node id="merchant/View.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="login.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="category/List.xhtml" x="900" y="750" zoom="true"/>
+        <Node id="batchheader/Upload.xhtml" x="650" y="1200" zoom="true"/>
+        <Node id="rate/Edit.xhtml" x="400" y="1050" zoom="true"/>
+        <Node id="category/View.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="country/List.xhtml" x="650" y="900" zoom="true"/>
+        <Node id="web/transactions/index.xhtml" x="1150" y="750" zoom="true"/>
+        <Node id="batchheader/List.xhtml" x="650" y="1050" zoom="true"/>
+        <Node id="rate/View.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="index.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="merchant/Create.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="transactiontype/Create.xhtml" x="1900" y="300" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations">
+        <Node id="login.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="*" x="150" y="450" zoom="true"/>
+        <Node id="web/index.xhtml" x="1400" y="600" zoom="true"/>
+    </Scope>
+</Scene>

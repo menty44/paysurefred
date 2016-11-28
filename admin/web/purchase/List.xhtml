@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPurchaseTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPurchaseEmpty}" rendered="#{purchaseController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{purchaseController.items.rowCount > 0}">
+                    <h:outputText value="#{purchaseController.pagination.pageFirstItem + 1}..#{purchaseController.pagination.pageLastItem + 1}/#{purchaseController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{purchaseController.previous}" value="#{bundle.Previous} #{purchaseController.pagination.pageSize}" rendered="#{purchaseController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{purchaseController.next}" value="#{bundle.Next} #{purchaseController.pagination.pageSize}" rendered="#{purchaseController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{purchaseController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPurchaseTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPurchaseTitle_amount}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.amount}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPurchaseTitle_shippingcost}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.shippingcost}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPurchaseTitle_systemtraceno}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.systemtraceno}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPurchaseTitle_referenceno}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.referenceno}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPurchaseTitle_paysuredate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.paysuredate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPurchaseTitle_email}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPurchaseTitle_transactiontype}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.transactiontype.value}"/>
+                            <h:outputText value="(#{item.transactiontype.description})"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPurchaseTitle_transactionsource}"/>
+                            </f:facet><h:outputText value="#{item.transactionsourceid.name}"/>
+                        </h:column>
+                        
+                        
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPurchaseTitle_statusid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.statusid.description}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMerchantTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.merchantid.name}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{purchaseController.prepareView}" value="#{bundle.ListPurchaseViewLink}"/>
+                            <h:outputText value=" "/>
+
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+
+                <br />
+                <h:commandLink value="#{bundle.ListPurchaseIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

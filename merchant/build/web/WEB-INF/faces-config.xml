@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+              xmlns="http://java.sun.com/xml/ns/javaee" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+          
+    <view-handler>service.CustomViewHandler</view-handler>    
+    <managed-bean>
+        <managed-bean-name>transactions</managed-bean-name>
+        <managed-bean-class>paygate.controllers.Transactions</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success?faces-redirect=true</from-outcome>
+            <to-view-id>/web/transactions/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>        
+    </navigation-rule>
+
+
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-action>#{users.logout}</from-action>
+            <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>        
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/token/Index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>logout?faces-redirect=true</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>        
+    </navigation-rule>
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>/index.xhtml?faces-redirect=true</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>   
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/purchase/Create.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/web/transactions/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{purchaseController.getpurchases()}</from-action>
+            <to-view-id>/purchase/List.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>    
+        
+    <managed-bean>
+        <managed-bean-name>users</managed-bean-name>
+        <managed-bean-class>paygate.controllers.Users</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <application>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+    </application>
+</faces-config>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.prime.com.tr/ui">
+
+
+    <ui:define name="title">
+        <h:outputText value="#{bundle.ListConfigTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">    
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="block"/>                
+            </h:panelGroup>   
+            <h:outputText escape="false" value="#{bundle.ListConfigEmpty}" rendered="#{configController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{configController.items.rowCount > 0}">
+                <p:dataTable value="#{configController.items}" var="item" paginator="true" rows="10" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,20" style="border:solid 1px">
+                    <f:facet name="header">
+                        View Config
+                    </f:facet>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListConfigTitle_id}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListConfigTitle_config}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.config}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListConfigTitle_value}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.value}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListConfigTitle_description}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.description}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListConfigTitle_created}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.created}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListConfigTitle_modified}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.modified}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{configController.prepareView}" value="#{bundle.ListConfigViewLink}" class="viewbutton"/>
+                        <h:outputText value=" "/>
+                    </p:column>
+                </p:dataTable>
+
+                <br />
+                <h:commandLink action="#{configController.prepareCreate}" value="#{bundle.ListConfigCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListConfigIndexLink}" action="/index" immediate="true" />
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+

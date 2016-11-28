@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html" id="wrapper">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />        
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+
+        <link rel="stylesheet" type="text/css" href="/merchant/css/jsfcrud.css" />
+        <link rel="stylesheet" type="text/css" href="/merchant/css/paygate.css" />
+
+    </h:head>
+
+    <h:body style="background: transparent; background-image: url(/merchant/images/Portal-Landing-Bg.jpg)">
+
+        <h:form>
+            <div id="page">
+                <div id="header" style="border: 0px solid blue"> 
+                    <div id="image">
+                        <img src="/merchant/images/logo.png" align="left" style="border: 0px solid red"/>
+                        <div style="margin-top: 5px; float: right;">   
+                            <h:panelGrid rendered="#{users.isLoggedIn}" border="0" id="panel" columns="2" cellpadding="10" cellspacing="2" style="float: right">
+                                <h:outputText value="Username: " style="font-weight: bold" />
+                                <h:outputText value="#{users.siteuser.username}" />
+                                <h:outputText value="Merchant: " style="font-weight: bold" />
+                                <h:outputText value="#{users.siteuser.merchant.name}" />                    
+                            </h:panelGrid>               
+                        </div>     
+                    </div>
+                    <!--<div id="sitename">Paysure Merchant Portal</div>-->
+                </div>
+                <!--
+                <h:panelGroup rendered="#{users.isLoggedIn == false}">
+                    <ul id="pagebar" class="menu" >
+                        <li class="page_item"><h:outputLink value="/merchant/web/login.xhtml">Login</h:outputLink></li>
+                    </ul
+                </h:panelGroup>-->                
+                               
+                <h:panelGroup  rendered="#{users.isLoggedIn}">                    
+                    <ul id="pagebar" class="menu" ><hr></hr>
+                        <li class="page_item"><h:commandLink value="Logout" action="#{users.logout}"/></li>
+                        <li><h:outputLink value="/merchant/web/transactions/index.xhtml">Transactions</h:outputLink></li>
+                        <li><h:outputLink value="/merchant/web/purchase/Show.xhtml">Purchases</h:outputLink></li>
+                        <li><h:outputLink value="/merchant/web/purchase/Create.xhtml">Payment Link Request</h:outputLink></li>
+                        <li><h:outputLink value="/merchant/web/batchheader/Header.xhtml">Payment Link Batch</h:outputLink></li>   
+                        <li><h:outputLink value="/merchant/web/token/Index.xhtml">Pre-Authorisation</h:outputLink></li>
+                        <!--<li><h:outputLink value="/merchant/web/batchitem/List.xhtml">Batch Items</h:outputLink></li>
+                        <li><h:outputLink value="#"><h:outputText value="#{users.siteuser.username}" /></h:outputLink></li>
+                        <li><h:outputLink value="#"><h:outputText value="#{users.siteuser.merchant.name}" /></h:outputLink></li>-->                                             
+                    </ul>
+                    <hr></hr> 
+                    <div id="line" style="padding-top: 0">                             
+                    </div>                   
+                </h:panelGroup>
+            </div>
+        </h:form>
+        <h1>
+            <ui:insert name="title">Default Title</ui:insert>
+        </h1>
+        <p>
+            <ui:insert name="body">Default Body</ui:insert>
+
+        </p>
+
+        <p>
+            <ui:insert name="footer">                
+                Paysure Limited @copyright 2009-2013
+            </ui:insert>
+
+        </p>
+    </h:body>
+
+</html>

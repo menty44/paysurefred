@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPurchaseTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_id}"/>
+                    <h:outputText value="#{purchaseController.selected.id}" title="#{bundle.ViewPurchaseTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_token}"/>
+                    <h:outputText value="#{purchaseController.selected.token}" title="#{bundle.ViewPurchaseTitle_token}"/>
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_age}"/>
+                    <h:outputText value="#{purchaseController.selected.age}" title="#{bundle.ViewPurchaseTitle_age}"/>
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_visits}"/>
+                    <h:outputText value="#{purchaseController.selected.visits}" title="#{bundle.ViewPurchaseTitle_visits}"/>
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_amount}"/>
+                    <h:outputText value="#{purchaseController.selected.amount}" title="#{bundle.ViewPurchaseTitle_amount}"/>
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_shippingcost}"/>
+                    <h:outputText value="#{purchaseController.selected.shippingcost}" title="#{bundle.ViewPurchaseTitle_shippingcost}"/>
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_recievinginstitution}"/>
+                    <h:outputText value="#{purchaseController.selected.recievinginstitution}" title="#{bundle.ViewPurchaseTitle_recievinginstitution}"/>
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_systemtraceno}"/>
+                    <h:outputText value="#{purchaseController.selected.systemtraceno}" title="#{bundle.ViewPurchaseTitle_systemtraceno}"/>
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_referenceno}"/>
+                    <h:outputText value="#{purchaseController.selected.referenceno}" title="#{bundle.ViewPurchaseTitle_referenceno}"/>
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_transmission}"/>
+                    <h:outputText value="#{purchaseController.selected.transmission}" title="#{bundle.ViewPurchaseTitle_transmission}"/>
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_purchasedate}"/>
+                    <h:outputText value="#{purchaseController.selected.purchasedate}" title="#{bundle.ViewPurchaseTitle_purchasedate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_paysuredate}"/>
+                    <h:outputText value="#{purchaseController.selected.paysuredate}" title="#{bundle.ViewPurchaseTitle_paysuredate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_secret}"/>
+                    <h:outputText value="#{purchaseController.selected.secret}" title="#{bundle.ViewPurchaseTitle_secret}"/>
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_email}"/>
+                    <h:outputText value="#{purchaseController.selected.email}" title="#{bundle.ViewPurchaseTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_transactiontype}"/>
+                    <h:outputText value="#{purchaseController.selected.transactiontype.value}" title="#{bundle.ViewPurchaseTitle_transactiontype}"/>
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_statusid}"/>
+                    <h:outputText value="#{purchaseController.selected.statusid.description}" title="#{bundle.ViewPurchaseTitle_statusid}"/>
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_merchantid}"/>
+                    <h:outputText value="#{purchaseController.selected.merchantid.name}" title="#{bundle.ViewPurchaseTitle_merchantid}"/>
+                    <h:outputText value="#{bundle.ViewPurchaseLabel_genderid}"/>
+                    <h:outputText value="#{purchaseController.selected.genderid.value}" title="#{bundle.ViewPurchaseTitle_genderid}"/>
+
+                </h:panelGrid>
+                <h:dataTable value="#{purchaseController.selected.dataCollection}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ViewDataTitle_itemname}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.itemname}"/>
+                    </h:column>
+                    
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ViewDataTitle_itemprice}"/>
+                        </f:facet>
+                        <h:outputText value="Ksh: #{item.itemprice}"/>
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ViewDataTitle_manufacturername}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.manufacturername}"/>
+                    </h:column>
+
+                </h:dataTable>
+                <br />
+                <h:commandLink action="#{purchaseController.destroyAndView}" value="#{bundle.ViewPurchaseDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewPurchaseEditLink}"/>
+                <br />
+
+                <h:commandLink action="#{purchaseController.prepareList}" value="#{bundle.ViewPurchaseShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewPurchaseIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

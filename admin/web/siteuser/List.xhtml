@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:define name="title">
+        <h:outputText value="#{bundle.ListSiteuserTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <p:dataTable value="#{siteuserController.items}" var="item" 
+                         paginator="true" rows="10" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15,20" style="border:solid 1px">    
+                <f:facet name="header">  
+                    View Site User  
+                </f:facet>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSiteuserTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSiteuserTitle_firstname}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.firstname}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSiteuserTitle_lastname}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.lastname}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSiteuserTitle_username}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.username}"/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSiteuserTitle_lastaccess}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.lastaccess}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSiteuserTitle_created}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.created}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSiteuserTitle_modified}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.modified}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSiteuserTitle_usergroupid}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.usergroupid.name}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSiteuserTitle_merchantid}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.merchantid.name}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="&nbsp;"/>
+                    </f:facet>
+                    <h:commandLink action="Password.xhtml" value="Password" class="viewbutton"/>
+                    <h:outputText value=" "/>                    
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="&nbsp;"/>
+                    </f:facet>
+                    <h:commandLink action="#{siteuserController.prepareView}" value="#{bundle.ListSiteuserViewLink}" class="viewbutton"/>
+                    <h:outputText value=" "/>                    
+                </p:column>
+            </p:dataTable>
+
+            <br />
+            <h:commandLink action="#{siteuserController.prepareCreate}" value="#{bundle.ListSiteuserCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListSiteuserIndexLink}" action="/index" immediate="true" />
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+

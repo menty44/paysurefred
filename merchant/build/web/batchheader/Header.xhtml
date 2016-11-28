@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template.xhtml">
+
+            <ui:define name="title">
+                Batch Headers
+            </ui:define>
+
+            <ui:define name="body">   
+                <link rel="stylesheet" media="all" type="text/css" href="/merchant/web/css/jquery-ui-1.8.6.custom.css" />
+                <h:form id="frm" style="margin-top: 60px;">   
+                    <p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel">  
+                        <f:facet name="start">  
+                            <h:graphicImage value="/web/images/ajaxloading.gif" />  
+                        </f:facet> 
+                        <f:facet name="complete">  
+                            <h:outputText value="" />  
+                        </f:facet>  
+                    </p:ajaxStatus> 
+                    <p:growl id="growl" />
+                    <p:dataTable id="tbl" value="#{batchheaderController.headers}" var="item" paginator="true" rows="5" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,20">
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="ID"/>                            
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column> 
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Batch Name" style="float: left;"/>                            
+                            </f:facet>
+                            <h:outputText value="#{item.batchname}" style="float: left;"/>
+                        </p:column> 
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Date"/>                            
+                            </f:facet>
+                            <h:outputText value="#{item.date}">
+                                <f:convertDateTime pattern="MM/dd/yyyy"/>                            
+                            </h:outputText>
+                        </p:column> 
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Status"/>                            
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </p:column> 
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Requests"/>                            
+                            </f:facet>
+                            <h:outputText value="#{item.requests}"/>
+                        </p:column> 
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Description" style="float: left;"/>                            
+                            </f:facet>
+                            <h:outputText value="#{item.description}" style="float: left;"/>
+                        </p:column> 
+                        <!--<p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Email Status" style="float: left;"/>                            
+                            </f:facet>
+                            <h:outputText value="#{item.emailstatus.toString()}" style="float: left;"/>
+                        </p:column>-->
+                        <p:column>
+                            <f:facet name="header">
+                                Action
+                            </f:facet>
+
+                            <p:commandButton value="View Items" ajax="true" update=":frm:viewItemPanel" icon="ui-icon-search" oncomplete="viewItemDialog.show();">
+                                <f:setPropertyActionListener target="#{batchheaderController.headerid}" value="#{item.id}"/> 
+                                <p:ajax/>
+                            </p:commandButton>
+
+                            <!--<p:commandButton value="View" ajax="true" update=":frm:viewPanel" icon="ui-icon-search" oncomplete="viewDialog.show();">                                
+                                <f:setPropertyActionListener target="#{batchheaderController.headerid}" value="#{item.id}"/> 
+                                <p:ajax/>
+                            </p:commandButton>-->
+
+                            <!--<p:commandButton value="Edit" ajax="true" update=":frm:editPanel" icon="ui-icon-pencil" oncomplete="editDialog.show();" disabled="#{item.emailstatus}">            
+                                <f:setPropertyActionListener target="#{batchheaderController.headerid}" value="#{item.id}"/>
+                                <p:ajax/>
+                            </p:commandButton>-->
+                            
+                            <p:commandButton value="Edit" action="EditBatch?faces-redirect=true">                               
+                                                                
+                                <f:setPropertyActionListener target="#{batchheaderController.headerid}" value="#{item.id}"/>
+                                <p:ajax/>
+                            </p:commandButton>
+                                
+                            
+                            
+                            <p:commandButton value="Upload" ajax="true" action="UploadBatch?faces-redirect=true" icon="ui-icon-tag" disabled="#{item.emailstatus.toString()}">
+                                <f:setPropertyActionListener target="#{batchheaderController.headerid}" value="#{item.id}"/>
+                                <p:ajax/>
+                            </p:commandButton>                                                                                          
+                            <p:commandButton value="Email" ajax="true" action="#{batchheaderController.sendMails}" icon="ui-icon-mail-closed" update=":frm:ajaxStatusPanel" onclick="pbAjax.start();" disabled="#{item.emailstatus}">
+                                <f:setPropertyActionListener target="#{batchheaderController.headerid}" value="#{item.id}"/>
+                                <p:ajax />
+                            </p:commandButton> 
+                        </p:column>  
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus" action="CreateBatch?faces-redirect=true" value="Create Batch Header" oncomplete="DataCreateDialog.show()" />                                                        
+                        </f:facet>                        
+
+                    </p:dataTable>  
+                    <p:outputPanel id="viewItemPanel">
+                        <p:dialog widgetVar="viewItemDialog" header="List of Batch Header Items" footer="Paysure Ltd">
+                            <p:dataTable value="#{batchheaderController.batchHeaderItems}" var="item" paginator="true" rows="5" rowsPerPageTemplate="5,10,15,20" style="margin-bottom: 8px;">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="ID" />                               
+                                    </f:facet>
+                                    <h:outputText value="#{item.id}" />                                    
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Client Name" style="float: left" />                               
+                                    </f:facet>
+                                    <h:outputText value="#{item.clientName}" style="float: left" />                                                    
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Email" style="float: left" />                               
+                                    </f:facet>
+                                    <h:outputText value="#{item.email}" style="float: left" />                                                     
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Description" style="float: left" />                               
+                                    </f:facet>
+                                    <h:outputText value="#{item.description}" style="float: left" />                                                     
+                                </p:column>  
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Currency" />                               
+                                    </f:facet>
+                                    <h:outputText value="#{item.currency}" />                                                                        
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Amount" style="float: right" />                               
+                                    </f:facet>
+                                    <h:outputText value="#{item.amount/100}" style="float: right" />                                                                        
+                                </p:column>                                
+                            </p:dataTable> 
+                            <p:commandButton value="Close" icon="ui-icon-closethick" onclick="viewItemDialog.hide()" style="margin: 0 auto;"/>
+                        </p:dialog>                        
+                    </p:outputPanel>
+                    <p:outputPanel id="viewPanel">                        
+                        <p:dialog widgetVar="viewDialog" header="Selected Batch Details" footer="Paysure Ltd">                            
+                            <p:panelGrid columns="2">                                
+                                <p:outputLabel value="ID" />
+                                <h:outputText value="#{batchheaderController.header.id}" />
+                                <p:outputLabel value="Batch Name" />
+                                <h:outputText value="#{batchheaderController.header.batchname}" />
+                                <p:outputLabel value="Date" />
+                                <h:outputText value="#{batchheaderController.header.date}" />
+                                <p:outputLabel value="Status" />
+                                <h:outputText value="#{batchheaderController.header.status}" />
+                                <p:outputLabel value="Requests" />
+                                <h:outputText value="#{batchheaderController.header.requests}" />
+                                <p:outputLabel value="Description" />
+                                <h:outputText value="#{batchheaderController.header.description}" />                                               
+                            </p:panelGrid>
+                            <p:commandButton value="Close" icon="ui-icon-closethick" onclick="viewDialog.hide()"/>
+                        </p:dialog>                                                
+                    </p:outputPanel>
+
+                    
+
+                    <p:outputPanel id="uploadPanel">                        
+                        <p:dialog widgetVar="uploadDialog">
+                            <f:facet name="header">
+                                <h:outputText value="Select .CSV File to Upload"/>
+                            </f:facet>
+                            <h:form style="padding-top: 40px;">
+                                <p:growl id="messages" showDetail="true"/>
+                                <h:outputText value="Select a File to Upload:"/>
+                                <p:fileUpload fileUploadListener="#{batchheaderController.handle2FileUpload}" mode="advanced" dragDropSupport="false" update="messages" sizeLimit="10000000" />  
+
+                                <h:outputText value="Id set is : #{batchheaderController.header.id}"/>
+
+                            </h:form>  
+                            <f:facet name="footer">
+                                <h:outputText value="Paysure Ltd"/>
+                                <p:commandButton value="Exit" icon="ui-icon-closethick" onclick="uploadDialog.hide();" style="float: right; margin-top: -5px;"/>
+                            </f:facet>
+                        </p:dialog>                        
+                    </p:outputPanel>
+
+                    <p:outputPanel id="emailPanel">
+
+                        <p:dialog widgetVar="emailDialog" header="Confirm Emailing" width="250">
+
+                            <h:outputText value="Are You Sure You Want to Email?"/>
+                            <p></p>
+                            <p:commandButton value="Yes" action="#{batchheaderController.sendMails}" >
+
+                            </p:commandButton>
+
+                            <p:commandButton value="No" onclick="emailDialog.hide();">
+
+                            </p:commandButton>
+                        </p:dialog>
+                    </p:outputPanel>
+                    <p></p>
+                    <p:progressBar id="pgbar" widgetVar="pbAjax" ajax="true" value="#{batchheaderController.progress}" labelTemplate="{value}%" styleClass="animated" interval="300">  
+                        <p:ajax event="complete" listener="#{batchheaderController.onComplete}"  update="growl"/>  
+                    </p:progressBar>                                       
+
+                </h:form>                
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

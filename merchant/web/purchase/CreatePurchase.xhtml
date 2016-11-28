@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="title">
+        Payment Link        
+    </ui:define>
+
+    <ui:define name="body">
+        <h:outputStylesheet library="css" name="jquery-ui-1.8.6.custom.css"/>
+
+        <h:form id="PurchaseCreateForm" style="width: 500px; margin: 0 auto;">
+            <p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel">  
+                <f:facet name="start">  
+                    <h:graphicImage value="/web/images/ajaxloading.gif" />  
+                </f:facet> 
+                <f:facet name="complete">  
+                    <h:outputText value="" />  
+                </f:facet>  
+            </p:ajaxStatus> 
+            <p:panel header="Create Payment Link Request" footer="Paysure Limited" >
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Client Name:" for="clientname" style="float: left;" />
+                    <p:inputText id="clientname" value="#{paymentLinkRequest.clientname}" required="true" requiredMessage="Please Enter a Client Name" />
+                    <p:outputLabel value="Email:" for="email" style="float: left;" />
+                    <p:inputText id="email" value="#{paymentLinkRequest.email}" required="true" requiredMessage="Please Provide a Valid Email" >
+                        <h:message for="email"></h:message>               
+                    </p:inputText>
+                    <p:outputLabel value="Description:" for="description" style="float: left;" />
+                    <p:inputText id="description" value="#{paymentLinkRequest.description}" required="true" requiredMessage="Enter a Description" />
+                    <p:outputLabel value="Amount" for="amount" style="float: left;" />
+                    <p:inputText id="amount" value="#{paymentLinkRequest.value}" required="true" requiredMessage="Please Provide the Amount"/>
+                    <p:outputLabel value="Currency" for="currency" rendered="#{users.isUsd}" style="float: left;"/>
+                    <h:panelGroup rendered="#{users.isUsd}" >
+                        <div id="cnt" style="width: 300px; margin-left: 20px;">
+                            <h:selectOneRadio id="currency" value="#{paymentLinkRequest.currency}" required="true" requiredMessage="Please Check the Currency Type ''KES'' or ''USD'' ">
+                                <f:selectItem itemValue="KES" itemLabel="KES" />
+                                <f:selectItem itemValue="USD" itemLabel="USD" />                                                        
+                            </h:selectOneRadio>
+                        </div>
+                    </h:panelGroup>
+                    <p:outputLabel value="Accepted:" style="float: left;" />
+                    <p:panelGrid columns="2">
+                        <p:graphicImage url="https://epayments.paysure.co.ke/logo/openmerchant/kenswitch.png"/>
+                        <p:graphicImage url="https://epayments.paysure.co.ke/logo/openmerchant/visa-mastercard.png"/>  
+                    </p:panelGrid>
+                    <f:facet name="footer">
+                        <p:commandButton value="Email Payment Link Request" icon="ui-icon-mail-closed" action="#{paymentLinkRequest.savePurchase}" style="margin-left: 140px;" oncomplete="linkDialog.show();" />
+                    </f:facet> 
+                </p:panelGrid>                
+            </p:panel>    
+
+            <p:dialog widgetVar="linkDialog" header="Payment Link Request" footer="Paysure Ltd" modal="true">
+
+                <p:outputLabel value="Your Payment Link Request Has Been Emailed Successfully"/>
+                <br></br>
+                <p:commandButton value="OK" onclick="linkDialog.hide();"/>
+
+            </p:dialog>
+
+
+        </h:form>
+    </ui:define>
+</ui:composition>

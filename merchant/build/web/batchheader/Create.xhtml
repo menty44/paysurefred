@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateBatchheaderTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>                
+            </h:panelGroup>
+            <br></br><br></br><br></br>
+            <h:form>
+                <h:panelGrid columns="2">                     
+                    <h:outputLabel value="#{bundle.CreateBatchheaderLabel_batchname}" for="batchname" style="margin-left: 150px" />
+                    <h:inputText id="batchname" value="#{batchheaderController.selected.batchname}" title="#{bundle.CreateBatchheaderTitle_batchname}" required="true" requiredMessage="#{bundle.CreateBatchheaderRequiredMessage_batchname}" style="margin-right: 265px"/>                                        
+                    <h:outputText value="Description:" style="margin-left: 150px"/>
+                    <h:inputText value="#{batchheaderController.selected.description}" required="true" requiredMessage="Please Input a Batchheader Description" style="margin-right: 265px"/>
+                    <h:outputText value="Currency:" rendered="#{users.isUsd}" style="margin-left: 162px"></h:outputText>
+                    <h:panelGroup rendered="#{users.isUsd}">     
+                        <div id="cnt" style="width: 315px; margin-left: 52px;">
+                            <h:selectOneRadio value="#{batchheaderController.selected.currency}" required="true" requiredMessage="Please Check the Currency Type ''KES'' or ''USD'' ">
+                                <f:selectItem itemValue="KES" itemLabel="KES" />
+                                <f:selectItem itemValue="USD" itemLabel="USD" />
+                            </h:selectOneRadio>
+                        </div>
+                    </h:panelGroup>                              
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{batchheaderController.create}" value="#{bundle.CreateBatchheaderSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="Show.xhtml" value="#{bundle.CreateBatchheaderShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateBatchheaderIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

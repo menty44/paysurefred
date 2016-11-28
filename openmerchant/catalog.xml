@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://196.216.64.237:8080/webdirect/onlinepay?wsdl" uri="src/conf/xml-resources/web-service-references/onlinepay/wsdl/196.216.64.237_8080/webdirect/onlinepay.wsdl"/>
+    <system systemId="http://196.216.64.237:8080/webdirect/onlinepay?xsd=1" uri="src/conf/xml-resources/web-service-references/onlinepay/wsdl/196.216.64.237_8080/webdirect/onlinepay.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/webdirect/onlinepay?WSDL" uri="src/conf/xml-resources/web-service-references/onlinepay_1/wsdl/localhost_8080/webdirect/onlinepay.wsdl"/>
+    <system systemId="http://localhost:8080/webdirect/onlinepay?xsd=1" uri="src/conf/xml-resources/web-service-references/onlinepay_1/wsdl/localhost_8080/webdirect/onlinepay.xsd_1.xsd"/>
+    <system systemId="https://epayments.paysure.co.ke/webdirect/onlinepay?wsdl" uri="src/conf/xml-resources/web-service-references/onlinepay_2/wsdl/epayments.paysure.co.ke/webdirect/onlinepay.wsdl"/>
+    <system systemId="https://epayments.paysure.co.ke:443/webdirect/onlinepay?xsd=1" uri="src/conf/xml-resources/web-service-references/onlinepay_2/wsdl/epayments.paysure.co.ke_443/webdirect/onlinepay.xsd_1.xsd"/>
+</catalog>

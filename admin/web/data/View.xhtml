@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDataTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDataLabel_id}"/>
+                    <h:outputText value="#{dataController.selected.id}" title="#{bundle.ViewDataTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewDataLabel_itemid}"/>
+                    <h:outputText value="#{dataController.selected.itemid}" title="#{bundle.ViewDataTitle_itemid}"/>
+                    <h:outputText value="#{bundle.ViewDataLabel_itemname}"/>
+                    <h:outputText value="#{dataController.selected.itemname}" title="#{bundle.ViewDataTitle_itemname}"/>
+                    <h:outputText value="#{bundle.ViewDataLabel_itemprice}"/>
+                    <h:outputText value="#{dataController.selected.itemprice}" title="#{bundle.ViewDataTitle_itemprice}"/>
+                    <h:outputText value="#{bundle.ViewDataLabel_manufacturerid}"/>
+                    <h:outputText value="#{dataController.selected.manufacturerid}" title="#{bundle.ViewDataTitle_manufacturerid}"/>
+                    <h:outputText value="#{bundle.ViewDataLabel_manufacturername}"/>
+                    <h:outputText value="#{dataController.selected.manufacturername}" title="#{bundle.ViewDataTitle_manufacturername}"/>
+                    <h:outputText value="#{bundle.ViewDataLabel_purchaseid}"/>
+                    <h:outputText value="#{dataController.selected.purchaseid}" title="#{bundle.ViewDataTitle_purchaseid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{dataController.destroyAndView}" value="#{bundle.ViewDataDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewDataEditLink}"/>
+                <br />
+                <h:commandLink action="#{dataController.prepareCreate}" value="#{bundle.ViewDataCreateLink}" />
+                <br />
+                <h:commandLink action="#{dataController.prepareList}" value="#{bundle.ViewDataShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewDataIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

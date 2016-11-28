@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template.xhtml">
+
+            <ui:define name="title">
+                List of Tokens
+            </ui:define>
+
+            <ui:define name="body">
+                
+                <h:form>                                        
+                            <h1><h:outputText value="List"/></h1>
+                            <h:dataTable value="#{tokenController.tokens}" var="item">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Id"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.id}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Token"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.token}"/>
+                                </h:column>                                
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Amount"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.amount}"/>
+                                </h:column>                                
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Systemtraceno"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.systemtraceno}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Referenceno"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.referenceno}"/>
+                                </h:column>                                
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Clientname"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.clientname}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Email"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.email}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Description"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.description}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Currency"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.currency}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Tokeno"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.tokeno}"/>
+                                </h:column>                                                              
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Statusid"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.statusid.code}"/>
+                                </h:column>                                
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Countryofresidence"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.countryofresidence}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Tokendate"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.tokendate}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Paysuredate"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.paysuredate}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Instruction"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.instruction}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Edit"/>
+                                    </f:facet>
+                                    <h:outputText value=""/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="View"/>
+                                    </f:facet>
+                                    <h:outputText value=""/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Reversal"/>
+                                    </f:facet>
+                                    <h:outputText value=""/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Debit"/>
+                                    </f:facet>
+                                    <h:outputText value=""/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Delete"/>
+                                    </f:facet>
+                                    <h:commandButton value="Delete" action="#{tokenController.removeTokens(item.id)}"/>
+                                </h:column>
+                            </h:dataTable>                        
+                </h:form>                
+            </ui:define>
+
+            <ui:define name="footer">
+                
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <body>
+
+        <ui:composition template="./../template.xhtml">
+
+            <ui:define name="title">
+                Try Page
+            </ui:define>
+
+            <ui:define name="body">
+                <link rel="stylesheet" media="all" type="text/css" href="/merchant/web/css/jquery-ui-1.8.6.custom.css" />
+                
+                <script type="text/javascript" src="/merchant/web/js/jquery-ui-1.8.6.custom.min.js"></script>
+                <h:form>  
+
+                    <p:growl id="messages" />  
+
+                    <h:panelGrid columns="2" cellpadding="5" border="2">  
+                        <h:outputText id="msg" value="Name Here"/>  
+
+                        <p:commandButton value="Destroy the World" onclick="confirmation.show()" actionListener="#{tokenController.testtwo}" type="button"/>  
+                    </h:panelGrid>  
+
+                    <p:confirmDialog message="Are you sure about destroying the world?"  
+                                     showEffect="bounce" hideEffect="explode"  
+                                     header="Initiating destroy process" severity="alert" widgetVar="confirmation">  
+                        
+                        <h:outputText value="#{tokenController.name}"/>
+                        <p:commandButton value="Yes Sure" update="messages" oncomplete="confirmation.hide()"  
+                                         actionListener="#{tokenController.test}" />  
+                        <p:commandButton value="Not Yet" onclick="confirmation.hide()" type="button" />   
+
+                    </p:confirmDialog>  
+
+                </h:form>   
+            </ui:define>
+
+
+
+        </ui:composition>
+
+    </body>
+</html>

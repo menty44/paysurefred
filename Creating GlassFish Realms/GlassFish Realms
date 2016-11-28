@@ -1,0 +1,54 @@
+GlassFish - Realms
+
+- Create/configure Realms by going to Configuration > server-config > security > Realms > New Realm
+
+(i) Create adminRealm Realm
+
+Click the New button > New Realm
+
+Name: adminRealm
+Class Name: com.sun.enterprise.security.auth.realm.jdbc.JDBCRealm
+JAAS Context: jdbcRealm
+JNDI: jdbc/admin
+User Table: siteuser
+User Name Column: username
+Password Column: password
+Group Table: siteuser
+Group Name Column: usergroupid
+Digest Algorithm: MD5
+
+Click OK
+
+(ii) Create csRealm Realm
+
+Click the New button > New Realm
+
+Name: csRealm
+Class Name: com.sun.enterprise.security.auth.realm.jdbc.JDBCRealm
+JAAS Context: jdbcRealm
+JNDI: jdbc/cs
+User Table: siteuser
+User Name Column: username
+Password Column: password
+Group Table: siteuser
+Group Name Column: usergroupid
+Digest Algorithm: MD5
+
+Click OK
+
+(iii) Create merchantRealm Realm
+
+Click the New button > New Realm
+
+Name: merchantRealm
+Class Name: com.sun.enterprise.security.auth.realm.jdbc.JDBCRealm
+JAAS Context: jdbcRealm
+JNDI: jdbc/merchant
+User Table: siteuser
+User Name Column: username
+Password Column: password
+Group Table: siteuser
+Group Name Column: groupid
+Digest Algorithm: MD5
+
+Click OK

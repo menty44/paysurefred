@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListBatchitemTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">            
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListBatchitemEmpty}" rendered="#{batchitemController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{batchitemController.items.rowCount > 0}">
+                    <h:outputText value="#{batchitemController.pagination.pageFirstItem + 1}..#{batchitemController.pagination.pageLastItem + 1}/#{batchitemController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{batchitemController.previous}" value="#{bundle.Previous} #{batchitemController.pagination.pageSize}" rendered="#{batchitemController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{batchitemController.next}" value="#{bundle.Next} #{batchitemController.pagination.pageSize}" rendered="#{batchitemController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{batchitemController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBatchitemTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBatchitemTitle_clientName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.clientName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBatchitemTitle_email}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBatchitemTitle_description}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBatchitemTitle_amount}" style="float: left"/>
+                            </f:facet>
+                            <h:outputText value="#{item.amount}" style="float: left"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBatchitemTitle_batchheaderId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.batchheaderId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{batchitemController.prepareView}" value="#{bundle.ListBatchitemViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{batchitemController.prepareEdit}" value="#{bundle.ListBatchitemEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{batchitemController.destroy}" value="#{bundle.ListBatchitemDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{batchitemController.prepareCreate}" value="#{bundle.ListBatchitemCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListBatchitemIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

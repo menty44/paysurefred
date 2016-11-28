@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Open Merchant Payment Form</title>
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css" />
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript"> $ = jQuery;</script> 
+        <script type="text/css">
+
+            .ui-widget-content .ui-datatable .ui-datatable-data td  table.panelgrid td {
+
+            border-style:none !important; 
+
+            }
+
+            .companyHeaderGrid td {
+            border: none;
+            }
+        </script>
+    </h:head>
+    <h:body style="background-image: url(images/Portal-bg.jpg)">
+        <f:metadata>            
+            <f:viewParam name="mname" value="#{bean.mname}" required="true" >                
+            </f:viewParam>                                 
+        </f:metadata>
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="main.css" />
+        </f:facet>
+        <!--<h:outputScript library="js" name="jquery.js" />-->
+        <h:outputScript library="js" name="custom.js" />
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="150" resizable="true" closable="true" collapsible="true" style="opacity:0.6 !important; margin-bottom: 100px !important;">
+                <p:outputLabel value="Bill" style="margin-top: 50px; margin-left: 20px; float: left;"  /> <br/>
+                <p:outputLabel value="Payments" style="margin-top: 50px; margin-left: -25px; float: left;" />
+                <p:graphicImage alt="Helb Logo" value="https://epayments.paysure.co.ke/logo/openmerchant/poweredby.png"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="1" closable="true" collapsible="true" style="opacity:0.6 !important;">
+
+            </p:layoutUnit>            
+
+            <p:layoutUnit position="center" size="auto" style="opacity:0.9 !important; filter:alpha(opacity=90) !important; background-color: white !important; margin: 0 auto !important; width: 60% !important;">
+
+                <p:panelGrid >
+                    <p:row>
+                        <p:column>
+                            <p:graphicImage value="https://epayments.paysure.co.ke/logo/#{bean.mlogo}.png" />
+                        </p:column>
+                    </p:row>
+                    <p:row>                                         
+                        <p:column >
+                            <fieldset>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value=" Merchant : " />
+                                    <p:outputLabel value="#{bean.merchant.name}" />
+                                    <p:outputLabel value=" Country : " />
+                                    <p:outputLabel value="#{bean.merchant.countryid.name}" />
+                                    <p:outputLabel value=" City : " />
+                                    <p:outputLabel value="#{bean.merchant.city}" />
+                                    <p:outputLabel value=" Street : " />
+                                    <p:outputLabel value="#{bean.merchant.street}" /> 
+                                    <p:outputLabel value=" Mobile : " />
+                                    <p:outputLabel value="#{bean.merchant.mobile}" />
+                                    <p:outputLabel value=" Email : " />
+                                    <p:outputLabel value="#{bean.merchant.email}" />
+                                    <p:outputLabel value=" Website : " />
+                                    <p:outputLabel value="#{bean.merchant.website}" />
+                                </p:panelGrid>
+                            </fieldset>
+                        </p:column> 
+                        <p:column rowspan="2" >
+                            <h:form class="form-stacked">     
+                                <fieldset>
+
+                                    <p:panelGrid columns="2" >
+                                        <p:outputLabel for="name" value="Name :" style="float: right;" />
+                                        <p:inputText id="name" value="#{bean.name}" required="true" requiredMessage="Name Can't be Empty" style="width: 100%" />
+                                        <p:outputLabel for="email" value="Email :" style="float: right;"/>
+                                        <p:inputText id="email" value="#{bean.email}" style="width: 100%" required="true" />
+                                        <p:outputLabel for="amount" value="Amount :" style="float: right;"/>
+                                        <p:inputText id="amount" value="#{bean.amount}" style="width: 100%" required="true" />
+                                        <p:outputLabel for="description" value="Description :" style="float: right;"/>
+                                        <p:inputText id="description" value="#{bean.description}" style="width: 100%" required="true" />                                    
+                                        <p:outputLabel value="Currency :" style="float: right;"/>
+                                        <h:selectOneRadio rendered="#{!bean.countrystatus}" id="currency" value="#{bean.currency}" style="width: 100%; margin-left: 50px;" class="btn btn-group" required="true"  >                                           
+                                                <f:selectItem itemValue="KES" itemLabel="KES" />
+                                                <f:selectItem itemValue="USD" itemLabel="USD" />                                          
+                                        </h:selectOneRadio> 
+                                        <p:panel rendered="#{bean.countrystatus}">
+                                             <h:selectOneRadio id="currency1" value="#{bean.currency}" style="width: 100%; margin-left: 50px;" class="btn btn-group" required="true"  >                                                                                     
+                                                 <f:selectItem itemValue="USD" itemLabel="USD" />                                           
+                                        </h:selectOneRadio> 
+                                        </p:panel>
+                                        <p:outputLabel value="Card Type :" style="float: right;"/>
+                                        <h:selectOneRadio rendered="#{!bean.countrystatus}" id="cardtype" value="#{bean.poption}" style="width: 100%; margin-left: 50px;" class="btn btn-group" required="true"  >                                            
+                                                <f:selectItem itemValue="1" itemLabel="Kenswitch" />
+                                                <f:selectItem itemValue="2" itemLabel="Visa" />                                                        
+                                        </h:selectOneRadio>  
+                                        
+                                        <p:panel rendered="#{bean.countrystatus}">
+                                            <h:selectOneRadio id="cardtype1" value="#{bean.poption}" style="width: 100%; margin-left: 50px;" class="btn btn-group" required="true"  >                                                                                           
+                                                <f:selectItem itemValue="2" itemLabel="Visa" />                                                        
+                                        </h:selectOneRadio>   
+                                        </p:panel>                                        
+                                        <p:outputLabel value="Accepted:" style="float: right;" />
+                                        <p:panelGrid columns="2" rendered="#{!bean.countrystatus}" >
+                                            <p:graphicImage url="https://epayments.paysure.co.ke/logo/openmerchant/kenswitch.png"/>
+                                            <p:graphicImage url="https://epayments.paysure.co.ke/logo/openmerchant/visa-mastercard.png"/>  
+                                        </p:panelGrid>
+                                        <p:panelGrid columns="1" rendered="#{bean.countrystatus}">
+                                            <p:graphicImage url="https://epayments.paysure.co.ke/logo/openmerchant/visa-mastercard.png"/>
+                                        </p:panelGrid>
+                                    </p:panelGrid>
+                                </fieldset>
+                                <h:commandButton value="Submit" action="#{bean.payment}" class="btn btn-large btn-success" actionListener="#{bean.paymentForm}" style="margin-left: 205px; margin-top: 8px;" />
+                            </h:form>
+                        </p:column>    
+                    </p:row> 
+                </p:panelGrid>
+            </p:layoutUnit>
+        </p:layout>        
+
+    </h:body>
+</html>
+

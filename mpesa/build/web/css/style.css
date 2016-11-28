@@ -1,0 +1,23 @@
+/* 
+    Document   : style
+    Created on : Jul 9, 2013, 9:45:19 AM
+    Author     : Joseph
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    line-height: 1.5em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #333;
+    background-image: url(images/Portal-Landing-Bg.jpg);
+    background-repeat: no-repeat;
+}
+

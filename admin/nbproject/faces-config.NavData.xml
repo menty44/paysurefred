@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="responsecode/View.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="transactionfile/View.xhtml" x="1650" y="300" zoom="true"/>
+        <Node id="merchant/Edit.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="purchase/Edit.xhtml" x="900" y="1050" zoom="true"/>
+        <Node id="transactionfile/Edit.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="transaction/Create.xhtml" x="400" y="1050" zoom="true"/>
+        <Node id="config/View.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="status/Edit.xhtml" x="150" y="1200" zoom="true"/>
+        <Node id="config/List.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="merchant/CreateOld.xhtml" x="2400" y="300" zoom="true"/>
+        <Node id="data/View.xhtml" x="1150" y="900" zoom="true"/>
+        <Node id="siteuser/List.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="status/Create.xhtml" x="1650" y="450" zoom="true"/>
+        <Node id="purchase/List.xhtml" x="1650" y="600" zoom="true"/>
+        <Node id="responsecode/Create.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="*" x="2400" y="150" zoom="true"/>
+        <Node id="config/Create.xhtml" x="1400" y="600" zoom="true"/>
+        <Node id="usergroup/Create.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="purchase/View.xhtml" x="400" y="1350" zoom="true"/>
+        <Node id="usergroup/Edit.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="siteuser/Edit.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="transaction/View.xhtml" x="650" y="1050" zoom="true"/>
+        <Node id="data/List.xhtml" x="1900" y="450" zoom="true"/>
+        <Node id="purchase/Create.xhtml" x="1400" y="750" zoom="true"/>
+        <Node id="rate/List.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="config/Edit.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="responsecode/Edit.xhtml" x="1150" y="750" zoom="true"/>
+        <Node id="country/Edit.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="siteuser/View.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="rate/Create.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="data/Create.xhtml" x="2650" y="150" zoom="true"/>
+        <Node id="usergroup/List.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="template.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="loginError.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="status/View.xhtml" x="1900" y="300" zoom="true"/>
+        <Node id="country/Create.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="data/Edit.xhtml" x="650" y="1200" zoom="true"/>
+        <Node id="country/View.xhtml" x="650" y="900" zoom="true"/>
+        <Node id="status/List.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="responsecode/List.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="merchant/List.xhtml" x="900" y="750" zoom="true"/>
+        <Node id="siteuser/Password.xhtml" x="2150" y="300" zoom="true"/>
+        <Node id="merchant/View.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="transactionfile/List.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="login.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="siteuser/Create.xhtml" x="900" y="900" zoom="true"/>
+        <Node id="rate/Edit.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="country/List.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="merchant/Password.xhtml" x="150" y="1500" zoom="true"/>
+        <Node id="web/transactionfile/List.xhtml" x="150" y="1350" zoom="true"/>
+        <Node id="transactionfile/Create.xhtml" x="400" y="1200" zoom="true"/>
+        <Node id="transaction/Edit.xhtml" x="2150" y="150" zoom="true"/>
+        <Node id="rate/View.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="merchant/Create.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="index.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="transaction/List.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="usergroup/View.xhtml" x="650" y="150" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

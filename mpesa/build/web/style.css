@@ -1,0 +1,67 @@
+/* 
+    Document   : style
+    Created on : Jul 9, 2013, 9:45:19 AM
+    Author     : Joseph
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+body{
+    /*margin: 0;
+    padding: 0;
+    line-height: 1.5em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: blueviolet;
+    opacity: 0.9;
+    filter:alpha(opacity=10);
+    background-image: url(mpesalogo.jpg);
+    background-repeat: no-repeat;*/
+    background-image: url(Portal-Landing-Bg.jpg);
+    /*background-repeat: no-repeat;*/
+}
+
+div.transbox
+{
+    width:480px;
+    height:280px;
+    margin:30px 250px;
+    background-color:#ffffff;
+    border:1px solid black;
+    opacity:0.6;
+    filter:alpha(opacity=60); /* For IE8 and earlier */
+}
+div.transbox2
+{
+    width:450px;
+    height:60px;
+    margin:180px 460px;
+    background-color:#ffffff;
+    padding-left: 110px;
+    border:1px solid black;
+    opacity:0.6;
+    filter:alpha(opacity=60); /* For IE8 and earlier */
+}
+#logo{
+    /*border: 2px solid red;*/
+}
+#hd{
+    /*border: 2px solid green;*/
+    width: 200px;
+    margin-top: -30px;
+    /*margin-left: 120px;*/
+    margin-bottom: 90px;
+}
+#confirm{    
+    width: 400px;
+    margin-top: -260px;
+    margin-left: 55%;    
+}
+h1{
+    margin-top: 100px;
+}
+

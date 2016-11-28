@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            Payment Link Batch Items
+        </ui:define>
+        <ui:define name="body">
+            <link rel="stylesheet" media="all" type="text/css" href="/merchant/web/css/jquery-ui-1.8.6.custom.css" />
+            <script type="text/javascript" src="/merchant/web/js/jquery-1.4.4.min.js"></script>
+            <script type="text/javascript" src="/merchant/web/js/jquery-ui-1.8.6.custom.min.js"></script>
+            <script type="text/javascript" src="/merchant/web/js/jquery-ui-timepicker-addon.js"></script>
+            <script type="text/javascript">                
+                $("#heading").css("font-size", "48px");                                
+            </script>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputScript library="js" name="jquery.js"/>
+            <h:form id="form1">     
+                <br></br><br></br>
+                <!--<h:outputText id="heading" value="Batch Header Id:"></h:outputText>-->
+                <!--<h:inputText id="inputText1"
+                             onchange="jsf.ajax.request(this, event, {render: 'form1:tbl'}); return false;"
+                             valueChangeListener="#{showItems.batchitems}"
+                             required="true" value="#{showItems.key}"/>-->                                          
+                <p:dataTable id="tbl" value="#{batchheaderController.batchitems}" var="item" paginator="true" rows="10" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,20" style="border:solid 1px" selectionMode="single">                                                   
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="ID"/>                            
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="ClientName" style="float: left"/>                            
+                        </f:facet>
+                        <h:outputText value="#{item.clientName}" style="float: left"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Email" style="float: left"/>                            
+                        </f:facet>
+                        <h:outputText value="#{item.email}" style="float: left"/>
+                    </p:column>                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Description" style="float: left"/>                            
+                        </f:facet>
+                        <h:outputText value="#{item.description}" style="float: left"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Currency" style="float: right"/>                            
+                        </f:facet>
+                        <h:outputText value="#{item.currency}" style="float: right"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Amount" style="float: right"/>                            
+                        </f:facet>
+                        <h:outputText value="#{item.amount/100}" style="float: right"/>
+                    </p:column>
+                </p:dataTable>                   
+            </h:form> 
+            
+            <p:dialog widgetVar="batchItemDetails" header="BatchItem" modal="true">
+            <h:form id="batchItemDialogForm">
+                <h:panelGrid columns="2">
+                    <h:outputText value="Id: " />
+                    <h:outputText value="#{item.id}" />
+                    <h:outputText value="Name: " />
+                    <h:outputText value="#{item.clientName}" />
+                    <h:outputText value="Amount: " />
+                    <h:outputText value="#{item.amount}" />
+                </h:panelGrid>
+            </h:form>
+            </p:dialog>
+            <h:graphicImage id="progress" library="images" name="325.gif" alt="pic here" style="display: none;"/>                        
+        </ui:define>
+    </ui:composition>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

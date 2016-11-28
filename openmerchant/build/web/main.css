@@ -1,0 +1,43 @@
+/* Main Layout */
+body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #333;
+    background-image: url(images/Portal-Landing-Bg.jpg);
+    background-repeat: no-repeat;
+}
+#mainbg{
+
+
+}
+#head-1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    color: #052e3d;
+    font-weight: lighter;    
+}
+#text-1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #05303e;
+}
+
+#input{
+    border: solid 2px #006699;
+    
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #05303e;
+    height: 22px;
+    
+    
+}
+
+#out{
+    border: solid 2px #0530ff;    
+}
+
+

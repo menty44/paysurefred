@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"      
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <body>
+
+        <ui:composition template="./../template.xhtml">
+
+            <ui:define name="title">
+                <div style="margin-left: 150px;">Confirm Debit</div>
+            </ui:define>
+
+            <ui:define name="body">
+
+                <h:panelGrid border="0" columns="2" style="margin-top: 80px; margin-bottom: 100px;">                    
+                    <h:form>                             
+                        <h:commandButton value="Yes" action="#{tokenController.debitToken(37)}"></h:commandButton>
+                        <h:commandButton  value="No" action="#{tokenController.cancel}"></h:commandButton>                        
+                    </h:form>                    
+                </h:panelGrid>                                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

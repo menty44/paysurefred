@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewBatchitemTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewBatchitemLabel_id}"/>
+                    <h:outputText value="#{batchitemController.selected.id}" title="#{bundle.ViewBatchitemTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewBatchitemLabel_clientName}"/>
+                    <h:outputText value="#{batchitemController.selected.clientName}" title="#{bundle.ViewBatchitemTitle_clientName}"/>
+                    <h:outputText value="#{bundle.ViewBatchitemLabel_email}"/>
+                    <h:outputText value="#{batchitemController.selected.email}" title="#{bundle.ViewBatchitemTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewBatchitemLabel_description}"/>
+                    <h:outputText value="#{batchitemController.selected.description}" title="#{bundle.ViewBatchitemTitle_description}"/>
+                    <h:outputText value="#{bundle.ViewBatchitemLabel_amount}"/>
+                    <h:outputText value="#{batchitemController.selected.amount}" title="#{bundle.ViewBatchitemTitle_amount}"/>
+                    <h:outputText value="#{bundle.ViewBatchitemLabel_batchheaderId}"/>
+                    <h:outputText value="#{batchitemController.selected.batchheaderId}" title="#{bundle.ViewBatchitemTitle_batchheaderId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{batchitemController.destroyAndView}" value="#{bundle.ViewBatchitemDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewBatchitemEditLink}"/>
+                <br />
+                <h:commandLink action="#{batchitemController.prepareCreate}" value="#{bundle.ViewBatchitemCreateLink}" />
+                <br />
+                <h:commandLink action="#{batchitemController.prepareList}" value="#{bundle.ViewBatchitemShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewBatchitemIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

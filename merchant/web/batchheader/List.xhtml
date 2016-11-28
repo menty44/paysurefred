@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Payment Link Batch List"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <link rel="stylesheet" media="all" type="text/css" href="/merchant/web/css/jquery-ui-1.8.6.custom.css" />
+            <script type="text/javascript" src="/merchant/web/js/jquery-1.4.4.min.js"></script>
+            <script type="text/javascript" src="/merchant/web/js/jquery-ui-1.8.6.custom.min.js"></script>
+            <script type="text/javascript" src="/merchant/web/js/jquery-ui-timepicker-addon.js"></script>
+            <h:outputScript library="js" name="jquery.js" />
+            <br></br><br></br><br></br><br></br>
+            <script type="text/javascript">
+                
+                $(document).ready(function(){
+                    //alert("working"); 
+                    
+                    
+                    //$("#form").css( "border", "9px solid red" );
+                    
+                          
+                });                
+                
+            </script>
+            <h:form id="form" styleClass="jsfcrud_list_form">     
+                <p:growl id="growl" />
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    <h:messages id="succ" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:commandButton value="Refresh" /><br></br><br></br>
+                <h:outputText escape="false" value="#{bundle.ListBatchheaderEmpty}" rendered="#{batchheaderController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{batchheaderController.items.rowCount > 0}">                                      
+                    <h:dataTable value="#{batchheaderController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row" rules="all" style="border: solid black 1px;">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBatchheaderTitle_id}" style="padding-left: 20px"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBatchheaderTitle_batchname}" style="float: left"/>
+                            </f:facet>
+                            <h:outputText value="#{item.batchname}" style="float: left"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBatchheaderTitle_date}" style="padding-left: 50px"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBatchheaderTitle_status}" style="padding-left: 20px"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBatchheaderTitle_requests}" style="padding-left: 20px"/>
+                            </f:facet>
+                            <h:outputText value="#{item.requests}"/>
+                        </h:column>                        
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Description" style="float: left"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}" style="float: left"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action" style="padding-left: 75px"/>
+                            </f:facet>
+                            <h:commandLink action="#{batchheaderController.upload2}" value="#{bundle.ListBatchheaderViewLink}">
+                                <f:param name="index" value="#{batchheaderController.selected.id}"/>                            
+                            </h:commandLink>
+                            <h:outputText value="  "/>
+                            <h:commandLink action="#{batchheaderController.prepareEdit}" value="#{bundle.ListBatchheaderEditLink}"/>
+                            <h:outputText value="  "/>
+
+                            <h:outputText value="  "/>
+                            <h:commandLink action="#{batchheaderController.upload}" value="Upload"/> 
+                            <h:outputText value="  "/>
+                            <h:commandLink rendered="false" id="link" action="#{batchheaderController.savePurchaseFromItem}" value="Email" onclick="pbAjax.start();">
+                                <p:ajax listener="#{batchheaderController.onComplete}"/>
+                            </h:commandLink>                            
+                        </h:column>
+                        <h:column>
+                            <p:commandLink action="#{batchheaderController.goToEmail}" value="Email Upload">
+                                <f:setPropertyActionListener target="#{batchheaderController.idd}" value="#{item.id}"/>                        
+                            </p:commandLink>
+                        </h:column>                            
+                        <h:outputText id="emails" value="#{batchheaderController.numberofemails}"/>
+                    </h:dataTable>
+                </h:panelGroup>                
+                <br />
+                <h:commandLink action="#{batchheaderController.prepareCreate}" value="Create Payment Link Batch"/>
+                <br />
+                <br />
+                <h:commandLink id="toindex" value="#{bundle.ListBatchheaderIndexLink}" action="/index" immediate="true" />   
+                <p:progressBar id="pgbar" widgetVar="pbAjax" ajax="true" value="#{batchheaderController.progress}" labelTemplate="{value}%" styleClass="animated" interval="400">  
+                    <p:ajax event="complete" listener="#{batchheaderController.onComplete}"  update="growl"/>  
+                </p:progressBar> 
+                
+            </h:form>
+            <h:graphicImage id="progress" library="images" name="325.gif" alt="pic here" style="display: none;"/>   
+            <h:outputScript library="js" name="custom.js" />
+            <h:outputText id="testing" value="Visible Text Panel"/>
+        </ui:define>
+    </ui:composition>
+</html>

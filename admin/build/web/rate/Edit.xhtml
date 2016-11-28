@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditRateTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditRateLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{rateController.selected.id}" title="#{bundle.EditRateTitle_id}" required="true" requiredMessage="#{bundle.EditRateRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditRateLabel_merchantrate}" for="merchantrate" />
+                    <h:inputText id="merchantrate" value="#{rateController.selected.merchantrate}" title="#{bundle.EditRateTitle_merchantrate}" />
+                    <h:outputLabel value="#{bundle.EditRateLabel_paysurerate}" for="paysurerate" />
+                    <h:inputText id="paysurerate" value="#{rateController.selected.paysurerate}" title="#{bundle.EditRateTitle_paysurerate}" />
+                    <h:outputLabel value="#{bundle.EditRateLabel_created}" for="created" />
+                    <h:inputText id="created" value="#{rateController.selected.created}" title="#{bundle.EditRateTitle_created}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditRateLabel_modified}" for="modified" />
+                    <h:inputText id="modified" value="#{rateController.selected.modified}" title="#{bundle.EditRateTitle_modified}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                </h:panelGrid>
+                <h:commandLink action="#{rateController.update}" value="#{bundle.EditRateSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditRateViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{rateController.prepareList}" value="#{bundle.EditRateShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditRateIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

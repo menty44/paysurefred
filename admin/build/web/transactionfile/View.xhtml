@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTransactionfileTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTransactionfileLabel_id}"/>
+                    <h:outputText value="#{transactionfileController.selected.id}" title="#{bundle.ViewTransactionfileTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewTransactionfileLabel_filedate}"/>
+                    <h:outputText value="#{transactionfileController.selected.filedate}" title="#{bundle.ViewTransactionfileTitle_filedate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTransactionfileLabel_transactions}"/>
+                    <h:outputText value="#{transactionfileController.selected.transactions}" title="#{bundle.ViewTransactionfileTitle_transactions}"/>
+                    <h:outputText value="#{bundle.ViewTransactionfileLabel_merchant}"/>
+                    <h:outputText value="#{transactionfileController.selected.merchant}" title="#{bundle.ViewTransactionfileTitle_merchant}"/>
+                    <h:outputText value="#{bundle.ViewTransactionfileLabel_kenswitch}"/>
+                    <h:outputText value="#{transactionfileController.selected.kenswitch}" title="#{bundle.ViewTransactionfileTitle_kenswitch}"/>
+                    <h:outputText value="#{bundle.ViewTransactionfileLabel_chase}"/>
+                    <h:outputText value="#{transactionfileController.selected.chase}" title="#{bundle.ViewTransactionfileTitle_chase}"/>
+                    <h:outputText value="#{bundle.ViewTransactionfileLabel_paysure}"/>
+                    <h:outputText value="#{transactionfileController.selected.paysure}" title="#{bundle.ViewTransactionfileTitle_paysure}"/>
+                    <h:outputText value="#{bundle.ViewTransactionfileLabel_filename}"/>
+                    <h:outputText value="#{transactionfileController.selected.filename}" title="#{bundle.ViewTransactionfileTitle_filename}"/>
+                    <h:outputText value="#{bundle.ViewTransactionfileLabel_created}"/>
+                    <h:outputText value="#{transactionfileController.selected.created}" title="#{bundle.ViewTransactionfileTitle_created}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTransactionfileLabel_modified}"/>
+                    <h:outputText value="#{transactionfileController.selected.modified}" title="#{bundle.ViewTransactionfileTitle_modified}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{transactionfileController.destroyAndView}" value="#{bundle.ViewTransactionfileDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewTransactionfileEditLink}"/>
+                <br />
+                <h:commandLink action="#{transactionfileController.prepareCreate}" value="#{bundle.ViewTransactionfileCreateLink}" />
+                <br />
+                <h:commandLink action="#{transactionfileController.prepareList}" value="#{bundle.ViewTransactionfileShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewTransactionfileIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

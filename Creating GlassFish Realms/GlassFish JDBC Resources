@@ -1,0 +1,49 @@
+GlassFish - JDBC Resources
+
+- Create/configure JDBC Connection Pool by going to Resources > JDBC > JDBC Resources
+
+(i) Create jdbc/admin JDBC Resource
+
+Click the New button > New JDBC Resource
+
+- JNDI Name: jdbc/admin
+- Pool Name: adminPool
+
+Click OK
+
+(ii) jdbc/cs JDBC Resource
+
+Click the New button > New JDBC Resource
+
+- JNDI Name: jdbc/cs
+- Pool Name: adminPool
+
+Click OK
+
+(iii) jdbc/merchant JDBC Resource
+
+Click the New button > New JDBC Resource
+
+- JNDI Name: jdbc/merchant
+- Pool Name: merchantPool
+
+Click OK
+
+(iv) Create jbdc/paygate
+
+Click the New button > New JDBC Resource
+
+- JNDI Name: jdbc/paygate
+- Pool Name: post-gre-sql_paygate_payuserPool
+
+Click OK
+
+(v) Create jbdc/dc JDBC Resource
+
+Click the New button > New JDBC Resource
+
+- JNDI Name: jdbc/dc
+- Pool Name: paypool
+
+Click OK
+

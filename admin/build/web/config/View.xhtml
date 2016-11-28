@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewConfigTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewConfigLabel_id}"/>
+                    <h:outputText value="#{configController.selected.id}" title="#{bundle.ViewConfigTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewConfigLabel_config}"/>
+                    <h:outputText value="#{configController.selected.config}" title="#{bundle.ViewConfigTitle_config}"/>
+                    <h:outputText value="#{bundle.ViewConfigLabel_value}"/>
+                    <h:outputText value="#{configController.selected.value}" title="#{bundle.ViewConfigTitle_value}"/>
+                    <h:outputText value="#{bundle.ViewConfigLabel_description}"/>
+                    <h:outputText value="#{configController.selected.description}" title="#{bundle.ViewConfigTitle_description}"/>
+                    <h:outputText value="#{bundle.ViewConfigLabel_created}"/>
+                    <h:outputText value="#{configController.selected.created}" title="#{bundle.ViewConfigTitle_created}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewConfigLabel_modified}"/>
+                    <h:outputText value="#{configController.selected.modified}" title="#{bundle.ViewConfigTitle_modified}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{configController.destroyAndView}" value="#{bundle.ViewConfigDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewConfigEditLink}"/>
+                <br />
+                <h:commandLink action="#{configController.prepareCreate}" value="#{bundle.ViewConfigCreateLink}" />
+                <br />
+                <h:commandLink action="#{configController.prepareList}" value="#{bundle.ViewConfigShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewConfigIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

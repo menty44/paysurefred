@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"      
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../template.xhtml">
+
+            <ui:define name="title">
+                Pre-Authorised Payments
+                <h:outputStylesheet library="css" name="primecustom.css"/>
+            </ui:define>
+
+            <ui:define name="body">
+                <link rel="stylesheet" media="all" type="text/css" href="/merchant/web/css/jquery-ui-1.8.6.custom.css" />
+                <link rel="stylesheet" media="all" type="text/css" href="/merchant/web/css/primecustom.css" />
+                <p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel">  
+                    <f:facet name="start">  
+                        <h:graphicImage value="/web/images/ajaxloading.gif" />  
+                    </f:facet> 
+                    <f:facet name="complete">  
+                        <h:outputText value="" />  
+                    </f:facet>  
+                </p:ajaxStatus> 
+                <h:form id="frm" style="margin-top: 40px;">  
+                    <p:growl id="growl" showDetail="true" life="3000"/>
+                    <p:dataTable id="tbl" value="#{tokenController.tokens}" var="item" paginator="true" rows="5" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,20">                         
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Date"/>                            
+                            </f:facet>
+                            <h:outputText value="#{item.paysuredate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy"/>
+                            </h:outputText>
+                        </p:column> 
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Refno"/>                            
+                            </f:facet>
+                            <h:outputText value="#{item.referenceno}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Status"/>                            
+                            </f:facet>
+                            <h:outputText value="#{item.responsecode.description}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Client Name" style="float: left"/>                            
+                            </f:facet>
+                            <h:outputText value="#{item.clientname}" style="float: left"/>
+                        </p:column>                                                                     
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Email" style="float: left"/>                            
+                            </f:facet>
+                            <h:outputText value="#{item.email}" style="float: left"/>
+                        </p:column>  
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Card"/>                            
+                            </f:facet>
+                            <h:outputText value="Visa"/>
+                        </p:column> 
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="CY"/>                            
+                            </f:facet>
+                            <h:outputText value="#{item.currency}"/>
+                        </p:column> 
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Amount" style="float: right"/>
+                            </f:facet>
+                            <h:outputText value="#{item.amount/100}"  style="float: right">
+                                <f:convertNumber pattern="###.00"/>
+                            </h:outputText>
+                        </p:column>    
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Confirm Reversal"/>                            
+                            </f:facet>
+                            <p:commandButton value="Reverse" actionListener="#" 
+                                             ajax="true"
+                                             oncomplete="confirmReversalDialogWidget.show();">
+                                <f:setPropertyActionListener target="#{tokenController.id}" value="#{item.id}" />                               
+                            </p:commandButton>
+                        </p:column>                        
+                        <!--<p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Debit"/>                            
+                            </f:facet>
+                            <h:commandButton value="Debit" action="#{tokenController.debitToken(item.id)}"/>
+                        </p:column>-->
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Confirm Debit"/>                            
+                            </f:facet>                            
+                            <p:commandButton value="Debit" actionListener="#" 
+                                             ajax="true"
+                                             oncomplete="yourConfirmationDialogWidget.show();">
+                                <f:setPropertyActionListener target="#{tokenController.id}" value="#{item.id}" />                               
+                            </p:commandButton>
+                        </p:column>                          
+                    </p:dataTable>  
+                    <p:outputPanel id="confirmReversalDialog" layout="block">  
+                        <p:confirmDialog widgetVar="confirmReversalDialogWidget" 
+                                         header="Confirm Reversal"
+                                         message="Are you sure you want to reverse the payment?"  
+                                         severity="alert">
+                            <p:commandButton id="confirm2" value="Yes" oncomplete="reversalok.show()" action="#{tokenController.reverse}" update="frm:tbl showReversal frm:growl" style="margin-left: 110px"/>
+                            <p:commandButton id="decline2" value="No" onclick="confirmReversalDialogWidget.hide()" type="button" />
+
+                        </p:confirmDialog>                    
+                    </p:outputPanel> 
+                    <p:outputPanel id="showReversal">
+                        <p:dialog widgetVar="reversalok" header="Your Reversal Was Successful..Click 'Ok' below to Continue">    
+                            <p:commandButton value="OK" onclick="confirmReversalDialogWidget.hide()" oncomplete="reversalok.hide()" update="frm:tbl"/>
+                        </p:dialog>
+                    </p:outputPanel>
+                    <p:outputPanel id="yourConfirmationDialog" layout="block">   
+                        <p:confirmDialog widgetVar="yourConfirmationDialogWidget" 
+                                         header="Confirm Debit"
+                                         message="Are you sure you want to debit the payment?"  
+                                         severity="alert">         
+                            <p:commandButton id="confirm" value="Yes" oncomplete="debitok.show()" action="#{tokenController.shift}" update="frm:tbl frm:show frm:growl" style="margin-left: 100px"/>
+                            <p:commandButton id="decline" value="No" onclick="yourConfirmationDialogWidget.hide()" type="button" />                
+                        </p:confirmDialog>
+                    </p:outputPanel>
+                    <p:outputPanel id="show">
+                        <p:dialog widgetVar="debitok" header="Your Debit Was Successful..Click 'Ok' below to Continue">    
+                            <p:commandButton value="OK" onclick="yourConfirmationDialogWidget.hide()" oncomplete="debitok.hide()"/>
+                        </p:dialog>
+                    </p:outputPanel>
+                </h:form>                
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

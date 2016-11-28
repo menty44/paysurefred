@@ -1,0 +1,304 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package authenticator;
+
+import java.io.*;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.Resource;
+import javax.ejb.EJB;
+import javax.naming.NamingException;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.transaction.UserTransaction;
+import javax.xml.namespace.QName;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.ws.Dispatch;
+import javax.xml.ws.Service;
+import javax.xml.ws.WebServiceRef;
+import objects.Purchase;
+import objects.Responsecode;
+import objects.Status;
+import objects.Transaction;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import service.AuthTransactionService;
+import utils.CloseCart;
+import utils.Email;
+import utils.Utils;
+
+/**
+ *
+ * @author gachanja
+ */
+
+public class authenticator extends HttpServlet {
+    @EJB
+    private Db dbb;
+    Purchase purchase = new Purchase();
+    Status status = new Status();
+    Responsecode responsecode = new Responsecode();
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/41.215.139.59_8066/KenswitchWebServiceAuthTransaction/AuthTransaction.wsdl")
+    private AuthTransactionService service;
+    @PersistenceContext(unitName = "authenticatorPU")
+    private EntityManager em;    
+    @Resource
+    private UserTransaction utx;
+    
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("authenticatorPU");
+    
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, NamingException {
+
+        PrintWriter out = response.getWriter();
+        response.setContentType("text/html;charset=UTF-8");
+        String code ="00";
+        Purchase purchase = new Purchase();
+        try {
+            String referenceno = request.getParameter("ref");
+            String systemtraceno = request.getParameter("tnum");            
+            BigDecimal amount = BigDecimal.valueOf(Integer.valueOf(request.getParameter("tamt"))/100);
+            EntityManager em = emf.createEntityManager();            
+            em.getTransaction().begin();
+            Transaction transaction = new Transaction();
+            transaction.setAmount(amount);
+            purchase = (Purchase) em.createNamedQuery("Purchase.findpurchase").setParameter("referenceno", referenceno).setParameter("amount", amount.multiply(new BigDecimal(100))).setParameter("systemtraceno", systemtraceno).setMaxResults(1).getSingleResult();                       
+            String amt = request.getParameter("tamt");
+            purchase = dbb.findPurchase(referenceno, request.getParameter("tamt"), systemtraceno);
+            amount = BigDecimal.valueOf(Integer.valueOf(request.getParameter("tamt")));
+            transaction.setRefno(referenceno);
+            //Status status = (Status) em.createNamedQuery("Status.findById").setParameter("id", 1).getSingleResult();            
+            status = dbb.findStatus(1);
+            transaction.setStatusid(status);
+            
+
+            /*QName portQName = new QName("http://authtransaction.webservice.kenswitch.org/", "AuthTransactionPort");
+            String req = "<AuthenticateTransaction xmlns=\"http://authtransaction.webservice.kenswitch.org/\"><parameter xmlns=\"\"><amount>" + amount + "</amount><refNo>" + referenceno + "</refNo><sysTraceNo>" + systemtraceno + "</sysTraceNo><transDateTime>" + purchase.getTransmission() + "</transDateTime></parameter></AuthenticateTransaction>";*/
+            try {
+                /*Dispatch<Source> sourceDispatch = null;
+                //sourceDispatch = service.createDispatch(portQName, Source.class);
+                sourceDispatch = service.createDispatch(portQName, Source.class, Service.Mode.PAYLOAD);
+                Source result = sourceDispatch.invoke(new StreamSource(new StringReader(req)));
+                TransformerFactory factory = TransformerFactory.newInstance();
+                Transformer transformer = factory.newTransformer();
+                transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+                transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+                OutputStream os = new ByteArrayOutputStream();
+                StreamResult streamResult = new StreamResult();
+                streamResult.setOutputStream(os);
+                transformer.transform(result, streamResult);
+                String xmlResult = streamResult.getOutputStream().toString();
+
+                DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
+                DocumentBuilder db = f.newDocumentBuilder();
+                InputSource inStream = new InputSource();
+                inStream.setCharacterStream(new StringReader(xmlResult));
+                org.w3c.dom.Document doc = db.parse(inStream);
+                NodeList nodeList = doc.getElementsByTagName("return");
+                String code = "";
+                for (int index = 0; index < nodeList.getLength(); index++) {
+                    Node node = nodeList.item(index);
+                    if (node.getNodeType() == Node.ELEMENT_NODE) {
+                        Element element = (Element) node;
+                        NodeList responseCode = element.getElementsByTagName("responseCode");
+                        for (int iIndex = 0; iIndex < responseCode.getLength(); iIndex++) {
+                            if (responseCode.item(iIndex).getNodeType() == Node.ELEMENT_NODE) {
+                                Element nameElement = (Element) responseCode.item(iIndex);
+                                code = nameElement.getFirstChild().getNodeValue().trim();
+                            }
+                        }
+                    }
+                }*/
+                
+                String image = "ok.png";
+                String message = "";
+                if (code.compareTo("00") != 0) {
+                    image = "no.png";
+                    message = "<br>An error occured, Please contact"+purchase.getMerchantid().getContactperson()+"</strong> from <strong>"+purchase.getMerchantid().getName()+"</strong> online merchant via email: <strong>"+purchase.getMerchantid().getEmail()+"</strong>"+" or via mobile number: <strong>"+purchase.getMerchantid().getMobile()+".</strong>";
+                }
+                
+                if (code.compareTo("00") == 0) {
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/success.jsp"); 
+                    dispatcher.forward(request, response);
+                    //status = (Status) em.createNamedQuery("Status.findById").setParameter("id", 5).getSingleResult();
+                    status = dbb.findStatus(5);
+                    transaction.setStatusid(status);
+                    if (purchase.getTransactionsourceid().getId() == 1) {
+                        String url = purchase.getMerchantid().getUrl() + "?amount=" + amount + "&transmission=" + purchase.getTransmission() + "&systraceno=" + systemtraceno + "&refno=" + purchase.getReferenceno();
+                        CloseCart closeCart = new CloseCart();
+                        closeCart.callUrl(url);
+                        System.out.println("URL To Merchant Portal: "+ url);
+                    }
+                    //Email email = new Email();
+                    //email.sendEmail(purchase, purchase.getEmail(), purchase.getReferenceno(), purchase.getTransmission());
+                }else {
+                    String url = purchase.getMerchantid().getReturnurl() + "?amount=" + amount + "&transmission=" + purchase.getTransmission() + "&systraceno=" + systemtraceno + "&refno=" + purchase.getReferenceno();
+                    CloseCart closeCart = new CloseCart();
+                    closeCart.callUrl(url);
+                }                
+                //Responsecode responsecode = (Responsecode) em.createNamedQuery("Responsecode.findByCode").setParameter("code", code).getSingleResult();
+                responsecode = dbb.findResponsecode(code);
+                transaction.setResponsecodeid(responsecode);
+                transaction.setCreated(new Date());
+                transaction.setDescription(purchase.getDescription());
+                transaction.setModified(new Date());
+                transaction.setMerchantid(purchase.getMerchantid());
+                transaction.setMerchantname(purchase.getMerchantid().getName());
+                transaction.setTransactionsourceid(purchase.getTransactionsourceid());
+                transaction.setProcessed(Boolean.FALSE);
+                transaction.setCardtype("kenswitch");
+                transaction.setClientname(purchase.getClientname());
+                transaction.setCurrency(purchase.getCurrency());
+                transaction.setEmail(purchase.getEmail());
+                Utils utils = new Utils();
+                transaction = utils.computeCommission(transaction);
+
+                //em.persist(transaction);
+                dbb.createTransaction(transaction);
+                
+                
+                
+                if(code.compareTo("00") == 0){
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/success.jsp"); 
+                    dispatcher.forward(request, response);
+                } else {
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/error.jsp"); 
+                    dispatcher.forward(request, response);
+                }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                out.println("<html>");
+                out.println("<head>");                               
+                out.println("<title>Authenticator</title>");
+                out.println("<link href='/authenticator/css/authenticator.css' rel='stylesheet' type='text/css' media='all' />");                
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<div id=\"whole\">");
+                out.println("<div id=\"one\" align=\"left\">");
+                out.println("<img id=\"yy\" src='/authenticator/img/logo.png'>");
+                out.println("</div>");
+                //out.println("<center>");
+                out.println("<div id=\"two\" align=\"center\">");
+                out.println("Response = " + responsecode.getDescription() + " (" + code + ")<br>");   
+                out.print("<center>");
+                out.println("<img src='/authenticator/img/" + image + "'>" +"<br>"+ message);
+                out.print("</center>");
+                out.println("</div>");                
+                //out.println("<link href='/authenticator/css/authenticator.css' rel='stylesheet' type='text/css' media='all' />");
+                out.println("<div id=\"three\" align=\"center\">");
+                out.println("<table align=\"center\">");
+                out.println("<tr><td>Email:</td><td>" + purchase.getEmail() + "</td></tr>");
+                out.println("<tr><td>Reference Number:</td><td>" + purchase.getReferenceno() + "</td></tr>");
+                out.println("<tr><td>Amount:</td><td>Ksh:" + purchase.getAmount()/100 + "</td></tr>");
+                out.println("<tr><td>Shipping Cost:</td><td>Ksh:" + purchase.getShippingcost() + "</td></tr>");
+                out.println("<tr><td>Merchant Name:</td><td>" + purchase.getMerchantid().getName() + "</td></tr>");
+                out.println("<tr><td>Purchase Date:</td><td>" + purchase.getPurchasedate() + "</td></tr>");
+                out.println("</table><br>");
+                out.println("</div>");
+                //Iterator i = purchase.getDataCollection().iterator();
+                /*out.println("<table>");                
+                HashMap<String, String> bg = new HashMap<String, String>();
+                bg.put("-1", "grey");
+                bg.put("1", "white");
+                int bgcolor = -1;
+                while (i.hasNext()) {
+                    Data data = (Data) i.next();
+                    out.println("<tr class='" + bg.get(String.valueOf(bgcolor)) + "'><td>" + data.getItemname() + "</td><td>Ksh:" + data.getItemprice() + "</td><td>" + data.getManufacturername() + "</td></tr>");
+                    bgcolor = bgcolor * -1;
+                }
+                out.println("</table><br>");*/
+                out.println("<div id=\"four\" align=\"center\">");
+                out.println("<img src='/authenticator/img/ken.png'><br><h1><i>Powered By...</i></h1>");
+                out.println("</div>");
+                out.print("<div id=\"five\" align=\"center\">");
+                out.print("<img src='/authenticator/img/poweredbypaysure.png'>");
+                out.print("</div>");
+
+            } catch (Exception ex) {
+                out.println("error was " + ex.toString());
+            }
+            
+            //em.getTransaction().commit();
+        } catch (Exception e) {
+            //out.println(e.getMessage().toString());
+            request.setAttribute("purchase", purchase);
+            request.setAttribute("code", code);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/error.jsp"); 
+            dispatcher.forward(request, response);
+            out.println("Payment Details are Invalid – Payment Confirmation Terminated!!!There Was an Error!!");
+            out.println("</div>");
+            out.println("</body>");
+            out.println("</html>");
+        } finally {
+            out.close();
+        }
+
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (NamingException ex) {
+
+            Logger.getLogger(authenticator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (NamingException ex) {
+
+            Logger.getLogger(authenticator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+    /*public void persist(Object object) {
+        try {
+            utx.begin();
+            em.persist(object);
+            utx.commit();
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            throw new RuntimeException(e);
+        }
+    }*/
+}

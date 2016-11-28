@@ -1,0 +1,120 @@
+
+* {
+	padding: 0;
+	margin: 0
+}
+body {
+    
+
+	font-family: Verdana, Arial, Helvetica, Sans-Serif;
+	
+	text-align: center
+}
+table {text-align: left; width: 100%; margin:auto; margin-top: 10px;  }
+
+th{
+    color:black; padding: 3px;
+    
+}
+
+td{border: 1px solid #000;}
+
+.yes{
+    
+    background-color: #02f228;
+    font-weight: bold;
+    margin: 10px;
+    border-right-style: solid;
+    border-style: solid;
+    border-color: #a1a1a1;
+    text-decoration: none;
+    padding:20px;
+
+}
+
+.yes:hover{
+    color:#000eff;
+    background-color: white;
+    
+}
+
+.no{
+    
+    background-color: #ff0019;
+    font-weight: bold;
+    margin: 10px;
+    border-right-style: solid;
+    border-style: solid;
+    border-color: #a1a1a1;
+    text-decoration: none;
+    padding: 20px;
+    color: #ffffff;
+    
+}
+
+.no:hover{
+    color:#fffa00;
+    background-color: black;
+    
+}
+
+
+.q{
+    margin: 10px;
+    padding:20px;
+    text-align: center;
+    color: #010101;
+    
+}
+
+.a{text-align: center;}
+
+.grey{
+    background-color: #e2d9d9;
+    
+}
+
+.thankyou{text-align: center; padding: 5px; color: #010101; margin-top:  50px;}
+#yy{
+    margin-left: 50px;
+}
+
+#one{
+    /*border: 2px solid red;*/
+    float: left;
+    /*background-color: appworkspace;*/       
+    width: 90%;
+    margin-left: 0px;
+}
+
+#two{
+    /*border: 2px solid blueviolet;*/
+    float: left;
+    margin-left: 80px;
+}
+
+#three{
+    float: left;
+    width: 90%;
+    /*border: 1px solid greenyellow;*/
+    /*margin-left: 120px;*/
+}
+
+#four{
+    float: left;    
+    margin-left: 420px;
+    /*border: 1px solid chocolate;*/
+}
+#five{
+    float: left;
+    /*border: 1px solid #000eff;*/
+    width: 90%;
+    /*margin-left: 50px;*/
+}
+#whole{
+    width: 1000px;
+    padding-left: 80px;    
+}
+table{
+    margin-top: 10px;
+}

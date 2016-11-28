@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="dailyTransactionProcessorPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>dailytransactionprocessor.Responsecode</class>
+    <class>dailytransactionprocessor.Config</class>
+    <class>dailytransactionprocessor.Country</class>
+    <class>dailytransactionprocessor.Status</class>
+    <class>dailytransactionprocessor.Rate</class>
+    <class>dailytransactionprocessor.Transaction</class>
+    <class>dailytransactionprocessor.Transactionfile</class>
+    <class>dailytransactionprocessor.Merchant</class>
+    <class>objects.Transaction</class>
+    <class>objects.Country</class>
+    <class>objects.Responsecode</class>
+    <class>objects.Status</class>
+    <class>objects.Rate</class>
+    <class>objects.Merchant</class>
+    <class>objects.Transactionfile</class>
+    <class>objects.Config</class>
+    <class>pg.objects.Merchant</class>
+    <class>pg.objects.Transaction</class>
+    <class>pg.objects.Country</class>
+    <class>pg.objects.Config</class>
+    <class>pg.objects.Transactionfile</class>
+    <class>pg.objects.Rate</class>
+    <class>pg.objects.Status</class>
+    <class>pg.objects.Responsecode</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/paygate"/>
+      <property name="javax.persistence.jdbc.password" value="paypass"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="payuser"/>
+    </properties>
+  </persistence-unit>
+</persistence>

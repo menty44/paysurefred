@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDataTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDataLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{dataController.selected.id}" title="#{bundle.EditDataTitle_id}" required="true" requiredMessage="#{bundle.EditDataRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditDataLabel_itemid}" for="itemid" />
+                    <h:inputText id="itemid" value="#{dataController.selected.itemid}" title="#{bundle.EditDataTitle_itemid}" />
+                    <h:outputLabel value="#{bundle.EditDataLabel_itemname}" for="itemname" />
+                    <h:inputText id="itemname" value="#{dataController.selected.itemname}" title="#{bundle.EditDataTitle_itemname}" />
+                    <h:outputLabel value="#{bundle.EditDataLabel_itemprice}" for="itemprice" />
+                    <h:inputText id="itemprice" value="#{dataController.selected.itemprice}" title="#{bundle.EditDataTitle_itemprice}" />
+                    <h:outputLabel value="#{bundle.EditDataLabel_manufacturerid}" for="manufacturerid" />
+                    <h:inputText id="manufacturerid" value="#{dataController.selected.manufacturerid}" title="#{bundle.EditDataTitle_manufacturerid}" />
+                    <h:outputLabel value="#{bundle.EditDataLabel_manufacturername}" for="manufacturername" />
+                    <h:inputText id="manufacturername" value="#{dataController.selected.manufacturername}" title="#{bundle.EditDataTitle_manufacturername}" />
+                    <h:outputLabel value="#{bundle.EditDataLabel_purchaseid}" for="purchaseid" />
+                    <h:selectOneMenu id="purchaseid" value="#{dataController.selected.purchaseid}" title="#{bundle.EditDataTitle_purchaseid}" >
+                        <f:selectItems value="#{purchaseController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{dataController.update}" value="#{bundle.EditDataSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditDataViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{dataController.prepareList}" value="#{bundle.EditDataShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditDataIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

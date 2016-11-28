@@ -1,0 +1,40 @@
+/* 
+    Document   : merchant
+    Created on : Jul 14, 2012, 11:39:16 AM
+    Author     : paysure
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+.leftcol {
+    display: block; width : 20%;
+    height: 300px;
+    float: left;
+    border: 1px solid #000;
+    width: 20%; height : 300px; float : left; border : 1px solid #000;
+    border-top: 0;
+}
+
+.rightcol {
+    width: 70%;
+    height: 300px;
+    float: left;
+    border: 1px solid #000;
+    border-top: 0;
+    border-left: 0;
+}
+merchantform{
+    background-color: #FFFFFF;
+    width:50%;
+    margin:auto;
+    padding:10px;
+    border:1px solid #8f8f8f;
+    padding-top: 50px;
+    border-radius: 15px;
+}
+
+
+

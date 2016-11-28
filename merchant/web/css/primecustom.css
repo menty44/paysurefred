@@ -1,0 +1,19 @@
+/* 
+    Document   : primecustom
+    Created on : Oct 7, 2013, 12:58:22 PM
+    Author     : Joseph
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#frm{
+    background-color: green;
+}
+
+.ui-datatable ui-widget{
+    background-color: green!important;
+}

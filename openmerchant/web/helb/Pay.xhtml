@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Search Page</title>        
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+        
+    </h:head>
+    <h:body>
+
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="180" resizable="true" closable="true" collapsible="true">
+                <p:graphicImage alt="Helb Logo" value="highereducationloansboard.png" styleClass="img-responsive"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="120" closable="true" collapsible="true" style="margin-bottom: 1px; padding-left: 2px;">
+                <h1>Payment Processing...</h1><p:graphicImage value="https://epayments.paysure.co.ke/logo/openmerchant/poweredby.png" styleClass="img-responsive" style="float: left; margin-left: 420px; margin-top: -90px;"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                <!--<h:form>
+                <p:menu>
+                    <p:submenu label="Resources">
+                        <p:menuitem value="Loan Status"/>
+                        <p:menuitem value="Loan Payment"/>                        
+                    </p:submenu>
+                </p:menu>
+                </h:form>-->
+            </p:layoutUnit>
+            <p:layoutUnit position="center">
+                Welcome to HELB Payment Form
+                <h:form id="frm">
+                    
+                    <p:panel>
+                        <h:outputLabel for="idno" value=" Check ID No:"/>
+                        <p:inputText id="idno" value="#{testBean.idnumber}" />
+                        <p:commandButton value="Search" ajax="true" action="#{testBean.workTwo}" update="frm:show" oncomplete="showok.show()" >
+                            <p:ajax />
+                        </p:commandButton>
+                    </p:panel>
+                    <p:outputPanel id="show">
+                        <p:dialog widgetVar="showok" footer="Thank You For Helping Us Educate Others" resizable="true" width="780" appendToBody="false" showEffect="clip" hideEffect="clip" position="620,240" >                                                       
+                            <c:choose>
+                                <c:when test="#{testBean.condition == 'yes'}">
+                                    <h:form>                                                
+                                        <p:panelGrid columns="4">
+                                            <f:facet name="header">
+                                                HELB Online Payment Form
+                                            </f:facet>
+                                            <h:outputLabel for="name" value="Name : "/>
+                                            <p:inputText id="name" value="#{testBean.helb.name}"/>
+                                            <h:outputLabel for="idnum" value="Id No : "/>
+                                            <p:inputText id="idnum" value="#{testBean.idnumber}" readonly="true"/>
+                                            <h:outputLabel for="amount" value="Amount : "/>
+                                            <p:inputText id="amount" value="#{testBean.amount}"/>
+                                            <h:outputLabel for="mobile" value="Mobile : "/>
+                                            <p:inputText id="mobile" value="#{testBean.helb.mobilenum}"/>
+                                            <h:outputLabel for="email" value="Email : "/>
+                                            <p:inputText id="email" value="#{testBean.helb.email}"/> 
+                                            <!--<h:outputLabel for="cardno" value="Card No : "/>
+                                            <p:inputText id="cardno"/>
+                                            <h:outputLabel value="Accepted Cards : "/>-->
+                                            <p:panelGrid>                                                
+                                                <p:row>                                                    
+                                                    <p:column>
+                                                        <p:graphicImage library="images" name="visa_smallest.png"/>
+                                                    </p:column>
+                                                    <p:column>
+                                                        <p:graphicImage library="images" name="mastercard_smallest.png"/>
+                                                    </p:column>
+                                                </p:row>                                                                                               
+                                            </p:panelGrid>
+                                            <!--<h:outputLabel for="date" value="Expiry Date : "/>                                    
+                                            <p:calendar id="date">
+                                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            </p:calendar>
+                                            <h:outputLabel for="cardname" value="Name on Card : "/>
+                                            <p:inputText id="cardname"/>
+                                            <h:outputLabel for="cvv" value="CVV : "/>
+                                            <p:inputText id="cvv"/>-->
+                                            <f:facet name="footer">                                                
+                                                <!--<p:selectBooleanCheckbox>
+                                                    <p:ajax update="growl"/>
+                                                </p:selectBooleanCheckbox>-->
+                                                <p:commandLink>
+                                                    <h:outputText value="Terms and Conditions" style="color: black;"/>
+                                                </p:commandLink>                                                
+                                                <p:commandButton value="Submit" icon="ui-icon-check" action="#{testBean.workTwo}" style="margin-left: 300px;"/>
+                                                <p:commandButton value="Cancel" action="#{testBean.payment()}" onclick="showok.hide()"/>
+                                            </f:facet>
+                                        </p:panelGrid>
+                                    </h:form>               
+
+                                </c:when>
+                                <c:otherwise>
+                                    <h:outputText value="We Can't Find Your Record....Please Try Contact HELB"/>
+                                </c:otherwise>
+                            </c:choose>
+                        </p:dialog>                        
+                    </p:outputPanel>
+                    <!--<p:dataTable value="#{testBean.students}" var="item" paginator="true" rowsPerPageTemplate="5,10,15,20">                       
+                        <p:column>                            
+                            <f:facet name="header">
+                                <h:outputText value="ID"/>
+                            </f:facet>
+                    #{item.id}
+                </p:column>
+                <p:column>                            
+                    <f:facet name="header">
+                        <h:outputText value="First Name"/>
+                    </f:facet>
+                    #{item.fname}
+                </p:column>
+                <p:column>                            
+                    <f:facet name="header">
+                        <h:outputText value="Last Name"/>
+                    </f:facet>
+                    #{item.lname}
+                </p:column>
+                <p:column>                            
+                    <f:facet name="header">
+                        <h:outputText value="ID No"/>
+                    </f:facet>
+                    #{item.idNo}
+                </p:column>                        
+            </p:dataTable>-->                                                  
+                   
+                </h:form>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>
+

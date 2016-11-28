@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMerchantTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2" width="65%" style="text-align: center">
+                    <h:outputText value="#{bundle.ViewMerchantLabel_id}"/>
+                    <h:outputText value="#{merchantController.selected.id}" title="#{bundle.ViewMerchantTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_merchantidentifier}"/>
+                    <h:outputText value="#{merchantController.selected.merchantidentifier}" title="#{bundle.ViewMerchantTitle_merchantidentifier}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_terminalid}"/>
+                    <h:outputText value="#{merchantController.selected.terminalid}" title="#{bundle.ViewMerchantTitle_terminalid}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_username}"/>
+                    <h:outputText value="#{merchantController.selected.username}" title="#{bundle.ViewMerchantTitle_username}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_ipaddress}"/>
+                    <h:outputText value="#{merchantController.selected.ipaddress}" title="#{bundle.ViewMerchantTitle_ipaddress}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_key}"/>
+                    <h:outputText value="#{merchantController.selected.key}" title="#{bundle.ViewMerchantTitle_key}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_name}"/>
+                    <h:outputText value="#{merchantController.selected.name}" title="#{bundle.ViewMerchantTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_street}"/>
+                    <h:outputText value="#{merchantController.selected.street}" title="#{bundle.ViewMerchantTitle_street}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_postcode}"/>
+                    <h:outputText value="#{merchantController.selected.postcode}" title="#{bundle.ViewMerchantTitle_postcode}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_city}"/>
+                    <h:outputText value="#{merchantController.selected.city}" title="#{bundle.ViewMerchantTitle_city}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_state}"/>
+                    <h:outputText value="#{merchantController.selected.state}" title="#{bundle.ViewMerchantTitle_state}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_bankcode}"/>
+                    <h:outputText value="#{merchantController.selected.bankcode}" title="#{bundle.ViewMerchantTitle_bankcode}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_branchcode}"/>
+                    <h:outputText value="#{merchantController.selected.branchcode}" title="#{bundle.ViewMerchantTitle_branchcode}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_bankaccount}"/>
+                    <h:outputText value="#{merchantController.selected.bankaccount}" title="#{bundle.ViewMerchantTitle_bankaccount}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_eftbalance}"/>
+                    <h:outputText value="#{merchantController.selected.eft}" title="#{bundle.ViewMerchantTitle_eftbalance}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_email}"/>
+                    <h:outputText value="#{merchantController.selected.email}" title="#{bundle.ViewMerchantTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_contactperson}"/>
+                    <h:outputText value="#{merchantController.selected.contactperson}" title="#{bundle.ViewMerchantTitle_contactperson}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_phone}"/>
+                    <h:outputText value="#{merchantController.selected.phone}" title="#{bundle.ViewMerchantTitle_phone}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_mobile}"/>
+                    <h:outputText value="#{merchantController.selected.mobile}" title="#{bundle.ViewMerchantTitle_mobile}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_created}"/>
+                    <h:outputText value="#{merchantController.selected.created}" title="#{bundle.ViewMerchantTitle_created}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_modified}"/>
+                    <h:outputText value="#{merchantController.selected.modified}" title="#{bundle.ViewMerchantTitle_modified}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_statusid}"/>
+                    <h:outputText value="#{merchantController.selected.statusid.description}" title="#{bundle.ViewMerchantTitle_statusid}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_rateid}"/>
+                    <h:outputText value="#{merchantController.selected.rateid}" title="#{bundle.ViewMerchantTitle_rateid}"/>
+                    <h:outputText value="#{bundle.ViewMerchantLabel_countryid}"/>
+                    <h:outputText value="#{merchantController.selected.countryid.name}" title="#{bundle.ViewMerchantTitle_countryid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{merchantController.destroyAndView}" value="#{bundle.ViewMerchantDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewMerchantEditLink}"/>
+                <br />
+                <h:commandLink action="#{merchantController.prepareCreate}" value="#{bundle.ViewMerchantCreateLink}" />
+                <br />
+                <h:commandLink action="#{merchantController.prepareList}" value="#{bundle.ViewMerchantShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewMerchantIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

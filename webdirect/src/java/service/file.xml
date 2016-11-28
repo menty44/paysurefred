@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<order>
+    <purchase>
+        <cardtype>2</cardtype>
+        <mname>Alphagen</mname>
+        <refno>3R0000000125</refno>
+        <systemtraceno>000236</systemtraceno>
+        <description>Order One</description>
+        <amount>200</amount>
+        <buyer>jose</buyer>
+        <email>joseph.njeru@paysure.co.ke</email>
+    </purchase>
+</order>
+
+<dataitems>     
+    <dataitem>
+        <itemname>pen</itemname>
+        <itemprice>50</itemprice>
+        <quantity>4</quantity>
+        <subtotal>200</subtotal>            
+    </dataitem>
+    <dataitem>
+        <itemname>book</itemname>
+        <itemprice>50</itemprice>
+        <quantity>4</quantity>
+        <subtotal>200</subtotal>            
+    </dataitem>
+    <dataitem>
+        <itemname>pen</itemname>
+        <itemprice>50</itemprice>
+        <quantity>4</quantity>
+        <subtotal>200</subtotal>            
+    </dataitem>
+</dataitems>

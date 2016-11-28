@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Open Merchant Select Merchant</title>
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+    </h:head>
+     <f:metadata>            
+            <f:viewParam name="country" value="#{bean.ctry}" valueChangeListener="#{bean.pChanged}" >                
+            </f:viewParam>
+            <f:viewParam name="cat" value="#{bean.cat}" />    
+            <f:event type="preRenderView" listener="#{bean.ppChanged}" />
+        </f:metadata>
+    <h:body style="background-image: url(images/Portal-Landing-Bg.jpg)">       
+
+        <p:outputLabel value="Bill" style="margin-top: 50px; margin-left: 20px; float: left;"  /> <br/>
+        <p:outputLabel value="Payments" style="margin-top: 50px; margin-left: -25px; float: left;" />
+        <p:graphicImage alt="Helb Logo" value="https://epayments.paysure.co.ke/logo/openmerchant/poweredby.png"/>
+
+        <h:form >
+            
+            <p:panel header="Select Merchant" style="width: 400px; margin: 200px auto;">
+
+                <p:selectOneMenu id="mn" value="#{bean.mname}" filter="true" effect="blind">
+                    <p:ajax listener="#{bean.handleChange}" />
+                    <f:selectItem itemLabel="Select Merchant" ItemValue="" />
+                    <f:selectItems value="#{bean.merchants}" var="merchant" itemLabel="#{merchant.name}" itemValue="#{merchant.name}" />                    
+                </p:selectOneMenu>                
+
+            </p:panel>
+
+        </h:form>
+
+
+<!--<p:outputLabel value="#{bean.ctry}" />
+<p:outputLabel value="#{bean.cat}" />-->
+
+    </h:body>
+</html>
+

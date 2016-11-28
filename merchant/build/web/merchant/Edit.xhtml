@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMerchantTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{merchantController.selected.id}" title="#{bundle.EditMerchantTitle_id}" required="true" requiredMessage="#{bundle.EditMerchantRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_terminalid}" for="terminalid" />
+                    <h:inputText id="terminalid" value="#{merchantController.selected.terminalid}" title="#{bundle.EditMerchantTitle_terminalid}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_username}" for="username" />
+                    <h:inputText id="username" value="#{merchantController.selected.username}" title="#{bundle.EditMerchantTitle_username}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{merchantController.selected.password}" title="#{bundle.EditMerchantTitle_password}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_key}" for="key" />
+                    <h:inputText id="key" value="#{merchantController.selected.key}" title="#{bundle.EditMerchantTitle_key}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{merchantController.selected.name}" title="#{bundle.EditMerchantTitle_name}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_street}" for="street" />
+                    <h:inputText id="street" value="#{merchantController.selected.street}" title="#{bundle.EditMerchantTitle_street}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_postcode}" for="postcode" />
+                    <h:inputText id="postcode" value="#{merchantController.selected.postcode}" title="#{bundle.EditMerchantTitle_postcode}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_city}" for="city" />
+                    <h:inputText id="city" value="#{merchantController.selected.city}" title="#{bundle.EditMerchantTitle_city}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_state}" for="state" />
+                    <h:inputText id="state" value="#{merchantController.selected.state}" title="#{bundle.EditMerchantTitle_state}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_bankcode}" for="bankcode" />
+                    <h:inputText id="bankcode" value="#{merchantController.selected.bankcode}" title="#{bundle.EditMerchantTitle_bankcode}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_branchcode}" for="branchcode" />
+                    <h:inputText id="branchcode" value="#{merchantController.selected.branchcode}" title="#{bundle.EditMerchantTitle_branchcode}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_bankaccount}" for="bankaccount" />
+                    <h:inputText id="bankaccount" value="#{merchantController.selected.bankaccount}" title="#{bundle.EditMerchantTitle_bankaccount}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{merchantController.selected.email}" title="#{bundle.EditMerchantTitle_email}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_contactperson}" for="contactperson" />
+                    <h:inputText id="contactperson" value="#{merchantController.selected.contactperson}" title="#{bundle.EditMerchantTitle_contactperson}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_phone}" for="phone" />
+                    <h:inputText id="phone" value="#{merchantController.selected.phone}" title="#{bundle.EditMerchantTitle_phone}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_mobile}" for="mobile" />
+                    <h:inputText id="mobile" value="#{merchantController.selected.mobile}" title="#{bundle.EditMerchantTitle_mobile}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_status}" for="status" />
+                    <h:selectOneMenu id="status" value="#{merchantController.selected.status}" title="#{bundle.EditMerchantTitle_status}" >
+                        <f:selectItems value="#{statusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_rate}" for="rate" />
+                    <h:selectOneMenu id="rate" value="#{merchantController.selected.rate}" title="#{bundle.EditMerchantTitle_rate}" >
+                        <f:selectItems value="#{rateController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_country}" for="country" />
+                    <h:selectOneMenu id="country" value="#{merchantController.selected.country}" title="#{bundle.EditMerchantTitle_country}" >
+                        <f:selectItems value="#{countryController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_merchantidentifier}" for="merchantidentifier" />
+                    <h:inputText id="merchantidentifier" value="#{merchantController.selected.merchantidentifier}" title="#{bundle.EditMerchantTitle_merchantidentifier}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_ipaddress}" for="ipaddress" />
+                    <h:inputText id="ipaddress" value="#{merchantController.selected.ipaddress}" title="#{bundle.EditMerchantTitle_ipaddress}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_url}" for="url" />
+                    <h:inputText id="url" value="#{merchantController.selected.url}" title="#{bundle.EditMerchantTitle_url}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_returnurl}" for="returnurl" />
+                    <h:inputText id="returnurl" value="#{merchantController.selected.returnurl}" title="#{bundle.EditMerchantTitle_returnurl}" />
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_categoryid}" for="categoryid" />
+                    <h:selectOneMenu id="categoryid" value="#{merchantController.selected.categoryid}" title="#{bundle.EditMerchantTitle_categoryid}" >
+                        <f:selectItems value="#{categoryController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_created}" for="created" />
+                    <h:inputText id="created" value="#{merchantController.selected.created}" title="#{bundle.EditMerchantTitle_created}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditMerchantLabel_modified}" for="modified" />
+                    <h:inputText id="modified" value="#{merchantController.selected.modified}" title="#{bundle.EditMerchantTitle_modified}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                </h:panelGrid>
+                <h:commandLink action="#{merchantController.update}" value="#{bundle.EditMerchantSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditMerchantViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{merchantController.prepareList}" value="#{bundle.EditMerchantShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditMerchantIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

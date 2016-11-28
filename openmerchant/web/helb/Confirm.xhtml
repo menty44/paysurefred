@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Payment Page</title>
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    </h:head>
+    <h:body>
+
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="180" resizable="true" closable="true" collapsible="true">
+                <p:graphicImage alt="Helb Logo" value="highereducationloansboard.png" styleClass="img-responsive"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="120" closable="true" collapsible="true" style="margin-bottom: 1px; padding-left: 2px;">
+                <h1>Payment Processing...</h1><p:graphicImage value="https://epayments.paysure.co.ke/logo/openmerchant/poweredby.png" styleClass="img-responsive" style="float: left; margin-left: 420px; margin-top: -90px;"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="175" header="Left" collapsible="true">                
+            </p:layoutUnit>
+            <p:layoutUnit position="center">
+                Welcome to HELB Payment Form Details Page
+                <h:form id="frm"> 
+                    <p:panelGrid columns="2">
+                        <h:outputLabel for="name" value="Name : "/>
+                        <p:inputText id="name" value="#{testBean.helb.name}"/>
+                        <h:outputLabel for="idnum" value="Id No : "/>
+                        <p:inputText id="idnum" value="#{testBean.idnumber}" readonly="true"/>
+                        <h:outputLabel for="amount" value="Amount : "/>
+                        <p:inputText id="amount" value="#{testBean.amount}" required="true" requiredMessage="Amount Can't be empty!"/>
+                        <h:outputLabel for="mobile" value="Mobile : "/>
+                        <p:inputText id="mobile" value="#{testBean.helb.mobilenum}"/>
+                        <h:outputLabel for="email" value="Email : "/>
+                        <p:inputText id="email" value="#{testBean.helb.email}"/>                        
+                        <p:outputLabel value="Card Type :" style="float: right;"/>
+                        <h:selectOneRadio id="cardtype" value="#{testBean.poption}" style="width: 100%; margin-left: 70px;" class="btn btn-group" required="true"  >                                                                       
+                            <f:selectItem itemValue="2" itemLabel="Visa" />    
+                            <f:selectItem itemValue="1" itemLabel="Kenswitch" />
+                        </h:selectOneRadio>  
+                        <p:outputLabel value="Accepted:" style="float: right;" />
+                        <p:panelGrid columns="2" rendered="#{!bean.countrystatus}" >
+                            <p:graphicImage url="https://epayments.paysure.co.ke/logo/openmerchant/visa-mastercard.png"/>
+                            <p:graphicImage url="https://epayments.paysure.co.ke/logo/openmerchant/kenswitch.png"/>                            
+                        </p:panelGrid>
+
+                    </p:panelGrid>
+                    <p:outputLabel style="margin-top: 40px;" />
+                    <h:commandButton value="Submit" action="#{testBean.payment}" style="margin-left: 150px;" styleClass="btn-success"/>
+                    <h:commandButton value="Cancel" styleClass="btn-danger"/>
+                </h:form>
+            </p:layoutUnit>
+        </p:layout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p:panelGrid columns="2">
+
+            <p:outputLabel value="#{testBean.helb.id}" />
+            <p:outputLabel value="#{testBean.helb.idnum}" />
+            <p:outputLabel value="#{testBean.helb.name}" />
+            <p:outputLabel value="#{testBean.helb.mobilenum}" />
+            <p:outputLabel value="#{testBean.helb.name}" />
+            <p:outputLabel value="#{testBean.helb.email}" />
+
+
+
+        </p:panelGrid>
+
+
+
+
+
+    </h:body>
+</html>
+

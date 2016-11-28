@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../template.xhtml">
+            <ui:insert name="title">Email Batch Upload</ui:insert>
+       
+            <ui:define name="body">                
+                <h:outputText value="#{batchheaderController.idd}"/>                
+                <h:form>         
+                    <p:growl id="growl" />
+                    <p:commandButton value="Email" action="#{batchheaderController}" onclick="pbAjax.start();">                        
+                        <p:ajax listener="#{batchheaderController.onComplete}"/>                                                
+                    </p:commandButton>                    
+                    <p:progressBar id="pgbar" widgetVar="pbAjax" ajax="true" value="#{batchheaderController.progress}" labelTemplate="{value}%" styleClass="animated" interval="400">  
+                    <p:ajax event="complete" listener="#{batchheaderController.onComplete}"  update="growl"/>  
+                </p:progressBar>                     
+                </h:form>                                              
+            </ui:define>            
+        </ui:composition>
+
+    </body>
+</html>

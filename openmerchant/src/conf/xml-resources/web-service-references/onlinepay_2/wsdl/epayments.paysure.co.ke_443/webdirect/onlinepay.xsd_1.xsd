@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.1 (branches/2.1-6728; 2011-02-03T14:14:58+0000) JAXWS-RI/2.2.3 JAXWS/2.2. --><xs:schema xmlns:tns="http://service/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://service/">
+
+<xs:element name="category" type="tns:category" />
+
+<xs:element name="country" type="tns:country" />
+
+<xs:element name="formData" type="tns:formData" />
+
+<xs:element name="formDataResponse" type="tns:formDataResponse" />
+
+<xs:element name="gender" type="tns:gender" />
+
+<xs:element name="hello" type="tns:hello" />
+
+<xs:element name="helloResponse" type="tns:helloResponse" />
+
+<xs:element name="link" type="tns:link" />
+
+<xs:element name="linkResponse" type="tns:linkResponse" />
+
+<xs:element name="merchant" type="tns:merchant" />
+
+<xs:element name="pickData" type="tns:pickData" />
+
+<xs:element name="pickDataResponse" type="tns:pickDataResponse" />
+
+<xs:element name="purchase" type="tns:purchase" />
+
+<xs:element name="rate" type="tns:rate" />
+
+<xs:element name="status" type="tns:status" />
+
+<xs:element name="test" type="tns:test" />
+
+<xs:element name="testResponse" type="tns:testResponse" />
+
+<xs:element name="transactionsource" type="tns:transactionsource" />
+
+<xs:element name="transactiontype" type="tns:transactiontype" />
+
+<xs:complexType name="hello">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="helloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="formData">
+<xs:sequence>
+<xs:element name="mname" type="xs:string" minOccurs="0" />
+<xs:element name="name" type="xs:string" minOccurs="0" />
+<xs:element name="email" type="xs:string" minOccurs="0" />
+<xs:element name="amount" type="xs:int" />
+<xs:element name="description" type="xs:string" minOccurs="0" />
+<xs:element name="payoption" type="xs:int" />
+<xs:element name="currency" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="formDataResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="test">
+<xs:sequence />
+</xs:complexType>
+
+<xs:complexType name="testResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="link">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0" />
+<xs:element name="arg1" type="tns:purchase" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="purchase">
+<xs:sequence>
+<xs:element name="age" type="xs:int" minOccurs="0" />
+<xs:element name="amount" type="xs:int" minOccurs="0" />
+<xs:element name="clientname" type="xs:string" minOccurs="0" />
+<xs:element name="currency" type="xs:string" minOccurs="0" />
+<xs:element name="description" type="xs:string" minOccurs="0" />
+<xs:element name="email" type="xs:string" minOccurs="0" />
+<xs:element name="genderid" type="tns:gender" minOccurs="0" />
+<xs:element name="id" type="xs:int" minOccurs="0" />
+<xs:element name="merchantid" type="tns:merchant" minOccurs="0" />
+<xs:element name="paysuredate" type="xs:dateTime" minOccurs="0" />
+<xs:element name="purchasedate" type="xs:dateTime" minOccurs="0" />
+<xs:element name="recievinginstitution" type="xs:string" minOccurs="0" />
+<xs:element name="referenceno" type="xs:string" minOccurs="0" />
+<xs:element name="secret" type="xs:string" minOccurs="0" />
+<xs:element name="shippingcost" type="xs:int" minOccurs="0" />
+<xs:element name="statusid" type="tns:status" minOccurs="0" />
+<xs:element name="systemtraceno" type="xs:string" minOccurs="0" />
+<xs:element name="token" type="xs:string" minOccurs="0" />
+<xs:element name="transactionsourceid" type="tns:transactionsource" minOccurs="0" />
+<xs:element name="transactiontype" type="tns:transactiontype" minOccurs="0" />
+<xs:element name="transmission" type="xs:string" minOccurs="0" />
+<xs:element name="visits" type="xs:int" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="gender">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0" />
+<xs:element name="value" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="merchant">
+<xs:sequence>
+<xs:element name="bankaccount" type="xs:string" minOccurs="0" />
+<xs:element name="bankcode" type="xs:string" minOccurs="0" />
+<xs:element name="branchcode" type="xs:string" minOccurs="0" />
+<xs:element name="categoryid" type="tns:category" minOccurs="0" />
+<xs:element name="city" type="xs:string" minOccurs="0" />
+<xs:element name="contactperson" type="xs:string" minOccurs="0" />
+<xs:element name="countryid" type="tns:country" minOccurs="0" />
+<xs:element name="created" type="xs:dateTime" minOccurs="0" />
+<xs:element name="eft" type="xs:integer" minOccurs="0" />
+<xs:element name="email" type="xs:string" minOccurs="0" />
+<xs:element name="id" type="xs:int" minOccurs="0" />
+<xs:element name="ipaddress" type="xs:string" minOccurs="0" />
+<xs:element name="key" type="xs:string" minOccurs="0" />
+<xs:element name="liveid" type="xs:string" minOccurs="0" />
+<xs:element name="liveusd" type="xs:string" minOccurs="0" />
+<xs:element name="merchantidentifier" type="xs:string" minOccurs="0" />
+<xs:element name="mobile" type="xs:string" minOccurs="0" />
+<xs:element name="modified" type="xs:dateTime" minOccurs="0" />
+<xs:element name="name" type="xs:string" minOccurs="0" />
+<xs:element name="password" type="xs:string" minOccurs="0" />
+<xs:element name="phone" type="xs:string" minOccurs="0" />
+<xs:element name="postcode" type="xs:string" minOccurs="0" />
+<xs:element name="rateid" type="tns:rate" minOccurs="0" />
+<xs:element name="returnurl" type="xs:string" minOccurs="0" />
+<xs:element name="state" type="xs:string" minOccurs="0" />
+<xs:element name="statusid" type="tns:status" minOccurs="0" />
+<xs:element name="street" type="xs:string" minOccurs="0" />
+<xs:element name="terminalid" type="xs:string" minOccurs="0" />
+<xs:element name="token" type="xs:string" minOccurs="0" />
+<xs:element name="url" type="xs:string" minOccurs="0" />
+<xs:element name="usd" type="xs:boolean" minOccurs="0" />
+<xs:element name="username" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="category">
+<xs:sequence>
+<xs:element name="description" type="xs:string" minOccurs="0" />
+<xs:element name="id" type="xs:int" minOccurs="0" />
+<xs:element name="name" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="country">
+<xs:sequence>
+<xs:element name="code" type="xs:string" minOccurs="0" />
+<xs:element name="created" type="xs:dateTime" minOccurs="0" />
+<xs:element name="id" type="xs:int" minOccurs="0" />
+<xs:element name="modified" type="xs:dateTime" minOccurs="0" />
+<xs:element name="name" type="xs:string" minOccurs="0" />
+<xs:element name="statusid" type="tns:status" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="status">
+<xs:sequence>
+<xs:element name="code" type="xs:int" minOccurs="0" />
+<xs:element name="created" type="xs:dateTime" minOccurs="0" />
+<xs:element name="description" type="xs:string" minOccurs="0" />
+<xs:element name="id" type="xs:int" minOccurs="0" />
+<xs:element name="modified" type="xs:dateTime" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="rate">
+<xs:sequence>
+<xs:element name="created" type="xs:dateTime" minOccurs="0" />
+<xs:element name="id" type="xs:int" minOccurs="0" />
+<xs:element name="merchantrate" type="xs:integer" minOccurs="0" />
+<xs:element name="modified" type="xs:dateTime" minOccurs="0" />
+<xs:element name="paysurerate" type="xs:integer" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="transactionsource">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0" />
+<xs:element name="name" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="transactiontype">
+<xs:sequence>
+<xs:element name="description" type="xs:string" minOccurs="0" />
+<xs:element name="id" type="xs:int" minOccurs="0" />
+<xs:element name="value" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="linkResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="pickData">
+<xs:sequence>
+<xs:element name="data" type="xs:string" minOccurs="0" />
+<xs:element name="dataitems" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="pickDataResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

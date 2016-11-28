@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTransactionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+                <!--
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTransactionLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{transactionController.selected.id}" title="#{bundle.EditTransactionTitle_id}" required="true" requiredMessage="#{bundle.EditTransactionRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditTransactionLabel_merchantname}" for="merchantname" />
+                    <h:inputText id="merchantname" value="#{transactionController.selected.merchantname}" title="#{bundle.EditTransactionTitle_merchantname}" />
+                    <h:outputLabel value="#{bundle.EditTransactionLabel_debitcredit}" for="debitcredit" />
+                    <h:inputText id="debitcredit" value="#{transactionController.selected.debitcredit}" title="#{bundle.EditTransactionTitle_debitcredit}" />
+                    <h:outputLabel value="#{bundle.EditTransactionLabel_amount}" for="amount" />
+                    <h:inputText id="amount" value="#{transactionController.selected.amount}" title="#{bundle.EditTransactionTitle_amount}" />
+                    <h:outputLabel value="#{bundle.EditTransactionLabel_commission}" for="commission" />
+                    <h:inputText id="commission" value="#{transactionController.selected.commission}" title="#{bundle.EditTransactionTitle_commission}" />
+                    <h:outputLabel value="#{bundle.EditTransactionLabel_cardnumber}" for="cardnumber" />
+                    <h:inputText id="cardnumber" value="#{transactionController.selected.cardnumber}" title="#{bundle.EditTransactionTitle_cardnumber}" />
+                    <h:outputLabel value="#{bundle.EditTransactionLabel_year}" for="year" />
+                    <h:inputText id="year" value="#{transactionController.selected.year}" title="#{bundle.EditTransactionTitle_year}" />
+                    <h:outputLabel value="#{bundle.EditTransactionLabel_month}" for="month" />
+                    <h:inputText id="month" value="#{transactionController.selected.month}" title="#{bundle.EditTransactionTitle_month}" />
+                    <h:outputLabel value="#{bundle.EditTransactionLabel_terminalid}" for="terminalid" />
+                    <h:inputText id="terminalid" value="#{transactionController.selected.terminalid}" title="#{bundle.EditTransactionTitle_terminalid}" />
+                    <h:outputLabel value="#{bundle.EditTransactionLabel_refno}" for="refno" />
+                    <h:inputText id="refno" value="#{transactionController.selected.refno}" title="#{bundle.EditTransactionTitle_refno}" />
+                    <h:outputLabel value="#{bundle.EditTransactionLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{transactionController.selected.description}" title="#{bundle.EditTransactionTitle_description}" />
+                    <h:outputLabel value="#{bundle.EditTransactionLabel_created}" for="created" />
+                    <h:inputText id="created" value="#{transactionController.selected.created}" title="#{bundle.EditTransactionTitle_created}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTransactionLabel_modified}" for="modified" />
+                    <h:inputText id="modified" value="#{transactionController.selected.modified}" title="#{bundle.EditTransactionTitle_modified}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTransactionLabel_statusid}" for="statusid" />
+                    <h:selectOneMenu id="statusid" value="#{transactionController.selected.statusid}" title="#{bundle.EditTransactionTitle_statusid}" >
+                        <f:selectItems value="#{statusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTransactionLabel_responsecodeid}" for="responsecodeid" />
+                    <h:selectOneMenu id="responsecodeid" value="#{transactionController.selected.responsecodeid}" title="#{bundle.EditTransactionTitle_responsecodeid}" >
+                        <f:selectItems value="#{responsecodeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTransactionLabel_merchantid}" for="merchantid" />
+                    <h:selectOneMenu id="merchantid" value="#{transactionController.selected.merchantid}" title="#{bundle.EditTransactionTitle_merchantid}" >
+                        <f:selectItems value="#{merchantController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{transactionController.update}" value="#{bundle.EditTransactionSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditTransactionViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{transactionController.prepareList}" value="#{bundle.EditTransactionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditTransactionIndexLink}" action="/index" immediate="true" />
+            </h:form>
+                -->
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,62 @@
+<?xml version='1.0' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html" id="wrapper" >
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <link rel="stylesheet" type="text/css" href="/admin/css/jsfcrud.css" />
+        <link rel="stylesheet" type="text/css" href="/admin/css/paygate.css"/>
+
+    </h:head>
+    <h:body style="background: transparent">
+        <h:form>
+            <div id="page">
+                <div id="header">
+                    <div id="image">
+                        <img src="/admin/images/logo.png" align="left"/>  
+                        <div id="line">
+                            <hr></hr>
+                        </div>
+                    </div>
+                </div>
+
+
+<!-- <h:panelGroup rendered="#{users.isLoggedIn == false}">
+<h:outputLink value="/admin/web/login.xhtml">Login</h:outputLink>
+</h:panelGroup>-->
+
+                <h:panelGroup rendered="#{users.isLoggedIn}">
+                    <h:outputText value="You are Logged in as:"/>
+                    <strong><h:outputText value="#{users.siteuser.username}" /></strong> &nbsp;&nbsp;
+                    (<h:commandLink value="Logout" action="#{users.logout}"/>) <hr/>
+                    <div id="menu">
+                        <h:outputLink value="/admin/web/transaction/List.xhtml">Transaction</h:outputLink>     
+                        <h:panelGroup rendered="#{users.siteuser.usergroupid.id == 2}">
+                            &nbsp;|&nbsp;  
+                            <h:outputLink value="/admin/web/config/List.xhtml">Config</h:outputLink>    &nbsp;|&nbsp;
+                            <h:outputLink value="/admin/web/country/List.xhtml">Country</h:outputLink>       &nbsp;|&nbsp; 
+                            <h:outputLink value="/admin/web/merchant/List.xhtml">Merchant</h:outputLink>     &nbsp;|&nbsp;   
+                            <h:outputLink value="/admin/web/rate/List.xhtml">Rate</h:outputLink>      &nbsp;|&nbsp;  
+                            <h:outputLink value="/admin/web/responsecode/List.xhtml">Response Code</h:outputLink>     &nbsp;|&nbsp;   
+                            <h:outputLink value="/admin/web/siteuser/List.xhtml">Site User</h:outputLink>     &nbsp;|&nbsp;   
+                            <h:outputLink value="/admin/web/status/List.xhtml">Status</h:outputLink>    &nbsp;|&nbsp;    
+                            <h:outputLink value="/admin/web/transactionfile/List.xhtml">Transaction File</h:outputLink>      &nbsp;|&nbsp;  
+                            <h:outputLink value="/admin/web/purchase/List.xhtml">Data</h:outputLink>      &nbsp;|&nbsp;  
+                            <h:outputLink value="/admin/web/usergroup/List.xhtml">User Groups</h:outputLink>    
+                        </h:panelGroup>
+                    </div> 
+                </h:panelGroup>
+            </div> 
+        </h:form>
+        <h1>
+            <ui:insert name="title">Default Title</ui:insert>
+        </h1>
+        <p>
+            <ui:insert name="body">Default Body</ui:insert>
+        </p>
+    </h:body>
+
+</html>

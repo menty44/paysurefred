@@ -1,0 +1,31 @@
+/* 
+    Document   : primecustom
+    Created on : Oct 7, 2013, 12:58:22 PM
+    Author     : Joseph
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#frm{
+    background-color: green;
+}
+
+.ui-datatable ui-widget{
+    background-color: green!important;
+}
+.ui-button-text{
+    /*background-color: red!important;*/    
+}
+.ui-dialog-buttonpane ui-widget-content ui-helper-clearfix{
+    background-color: #c77405!important;
+}
+.ui-icon ui-icon-alert{
+    
+}
+.ui-button-text{
+    /*background-color: red!important;*/
+}

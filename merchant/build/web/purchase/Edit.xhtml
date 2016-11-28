@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPurchaseTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{purchaseController.selected.id}" title="#{bundle.EditPurchaseTitle_id}" required="true" requiredMessage="#{bundle.EditPurchaseRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_token}" for="token" />
+                    <h:inputText id="token" value="#{purchaseController.selected.token}" title="#{bundle.EditPurchaseTitle_token}" />
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_age}" for="age" />
+                    <h:inputText id="age" value="#{purchaseController.selected.age}" title="#{bundle.EditPurchaseTitle_age}" />
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_visits}" for="visits" />
+                    <h:inputText id="visits" value="#{purchaseController.selected.visits}" title="#{bundle.EditPurchaseTitle_visits}" />
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_amount}" for="amount" />
+                    <h:inputText id="amount" value="#{purchaseController.selected.amount}" title="#{bundle.EditPurchaseTitle_amount}" />
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_shippingcost}" for="shippingcost" />
+                    <h:inputText id="shippingcost" value="#{purchaseController.selected.shippingcost}" title="#{bundle.EditPurchaseTitle_shippingcost}" />
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_recievinginstitution}" for="recievinginstitution" />
+                    <h:inputText id="recievinginstitution" value="#{purchaseController.selected.recievinginstitution}" title="#{bundle.EditPurchaseTitle_recievinginstitution}" />
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_systemtraceno}" for="systemtraceno" />
+                    <h:inputText id="systemtraceno" value="#{purchaseController.selected.systemtraceno}" title="#{bundle.EditPurchaseTitle_systemtraceno}" />
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_referenceno}" for="referenceno" />
+                    <h:inputText id="referenceno" value="#{purchaseController.selected.referenceno}" title="#{bundle.EditPurchaseTitle_referenceno}" />
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_transmission}" for="transmission" />
+                    <h:inputText id="transmission" value="#{purchaseController.selected.transmission}" title="#{bundle.EditPurchaseTitle_transmission}" />
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_purchasedate}" for="purchasedate" />
+                    <h:inputText id="purchasedate" value="#{purchaseController.selected.purchasedate}" title="#{bundle.EditPurchaseTitle_purchasedate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_paysuredate}" for="paysuredate" />
+                    <h:inputText id="paysuredate" value="#{purchaseController.selected.paysuredate}" title="#{bundle.EditPurchaseTitle_paysuredate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_secret}" for="secret" />
+                    <h:inputText id="secret" value="#{purchaseController.selected.secret}" title="#{bundle.EditPurchaseTitle_secret}" />
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_clientname}" for="clientname" />
+                    <h:inputText id="clientname" value="#{purchaseController.selected.clientname}" title="#{bundle.EditPurchaseTitle_clientname}" />
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{purchaseController.selected.email}" title="#{bundle.EditPurchaseTitle_email}" />
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{purchaseController.selected.description}" title="#{bundle.EditPurchaseTitle_description}" />
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_transactiontype}" for="transactiontype" />
+                    <h:selectOneMenu id="transactiontype" value="#{purchaseController.selected.transactiontype}" title="#{bundle.EditPurchaseTitle_transactiontype}" >
+                        <f:selectItems value="#{transactiontypeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_statusid}" for="statusid" />
+                    <h:selectOneMenu id="statusid" value="#{purchaseController.selected.statusid}" title="#{bundle.EditPurchaseTitle_statusid}" >
+                        <f:selectItems value="#{statusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_merchantid}" for="merchantid" />
+                    <h:selectOneMenu id="merchantid" value="#{purchaseController.selected.merchantid}" title="#{bundle.EditPurchaseTitle_merchantid}" >
+                        <f:selectItems value="#{merchantController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPurchaseLabel_genderid}" for="genderid" />
+                    <h:selectOneMenu id="genderid" value="#{purchaseController.selected.genderid}" title="#{bundle.EditPurchaseTitle_genderid}" >
+                        <f:selectItems value="#{genderController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{purchaseController.update}" value="#{bundle.EditPurchaseSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditPurchaseViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{purchaseController.prepareList}" value="#{bundle.EditPurchaseShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditPurchaseIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

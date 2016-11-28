@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:composition template="/template.xhtml" > 
+        <ui:define name="title">
+            Batch Items            
+        </ui:define>
+        <ui:define name="body">    
+            <link rel="stylesheet" media="all" type="text/css" href="/merchant/web/css/jquery-ui-1.8.6.custom.css" />
+            <script type="text/javascript" src="/merchant/web/js/jquery-1.4.4.min.js"></script>
+            <script type="text/javascript" src="/merchant/web/js/jquery-ui-1.8.6.custom.min.js"></script>
+            <script type="text/javascript" src="/merchant/web/js/jquery-ui-timepicker-addon.js"></script>
+            <h:form>
+                <div>                     
+                    <h:commandButton value="Refresh" />
+                    <h:commandButton value="Excel Export">
+                        <p:dataExporter target="tbl" type="xls" fileName="transactions"/>
+                    </h:commandButton>
+                </div>
+                <p:dataTable id="tbl" value="#{batchheaderController.batchitems}" var="item" paginator="true" rows="10" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,20" style="border:solid 1px">                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="ID"/>                            
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="ClientName"/>                            
+                        </f:facet>
+                        <h:outputText value="#{item.clientName}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Email"/>                            
+                        </f:facet>
+                        <h:outputText value="#{item.email}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Amount"/>                            
+                        </f:facet>
+                        <h:outputText value="#{item.amount}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Description"/>                            
+                        </f:facet>
+                        <h:outputText value="#{item.description}"/>
+                    </p:column>                                        
+                </p:dataTable>   
+                <h:outputText value="#{transactions.showUser()}"/>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+</html>

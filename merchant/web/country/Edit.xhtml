@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCountryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCountryLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{countryController.selected.id}" title="#{bundle.EditCountryTitle_id}" required="true" requiredMessage="#{bundle.EditCountryRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditCountryLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{countryController.selected.name}" title="#{bundle.EditCountryTitle_name}" />
+                    <h:outputLabel value="#{bundle.EditCountryLabel_code}" for="code" />
+                    <h:inputText id="code" value="#{countryController.selected.code}" title="#{bundle.EditCountryTitle_code}" />
+                    <h:outputLabel value="#{bundle.EditCountryLabel_status}" for="status" />
+                    <h:selectOneMenu id="status" value="#{countryController.selected.status}" title="#{bundle.EditCountryTitle_status}" >
+                        <f:selectItems value="#{statusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditCountryLabel_created}" for="created" />
+                    <h:inputText id="created" value="#{countryController.selected.created}" title="#{bundle.EditCountryTitle_created}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditCountryLabel_modified}" for="modified" />
+                    <h:inputText id="modified" value="#{countryController.selected.modified}" title="#{bundle.EditCountryTitle_modified}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                </h:panelGrid>
+                <h:commandLink action="#{countryController.update}" value="#{bundle.EditCountrySaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditCountryViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{countryController.prepareList}" value="#{bundle.EditCountryShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditCountryIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

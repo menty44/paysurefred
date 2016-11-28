@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSiteuserTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSiteuserLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{siteuserController.selected.id}" title="#{bundle.CreateSiteuserTitle_id}" required="true" requiredMessage="#{bundle.CreateSiteuserRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateSiteuserLabel_firstname}" for="firstname" />
+                    <h:inputText id="firstname" value="#{siteuserController.selected.firstname}" title="#{bundle.CreateSiteuserTitle_firstname}" />
+                    <h:outputLabel value="#{bundle.CreateSiteuserLabel_lastname}" for="lastname" />
+                    <h:inputText id="lastname" value="#{siteuserController.selected.lastname}" title="#{bundle.CreateSiteuserTitle_lastname}" />
+                    <h:outputLabel value="#{bundle.CreateSiteuserLabel_username}" for="username" />
+                    <h:inputText id="username" value="#{siteuserController.selected.username}" title="#{bundle.CreateSiteuserTitle_username}" />
+                    <h:outputLabel value="#{bundle.CreateSiteuserLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{siteuserController.selected.password}" title="#{bundle.CreateSiteuserTitle_password}" />
+                    <h:outputLabel value="#{bundle.CreateSiteuserLabel_lastaccess}" for="lastaccess" />
+                    <h:inputText id="lastaccess" value="#{siteuserController.selected.lastaccess}" title="#{bundle.CreateSiteuserTitle_lastaccess}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSiteuserLabel_created}" for="created" />
+                    <h:inputText id="created" value="#{siteuserController.selected.created}" title="#{bundle.CreateSiteuserTitle_created}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSiteuserLabel_modified}" for="modified" />
+                    <h:inputText id="modified" value="#{siteuserController.selected.modified}" title="#{bundle.CreateSiteuserTitle_modified}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSiteuserLabel_usergroupid}" for="usergroupid" />
+                    <h:selectOneMenu id="usergroupid" value="#{siteuserController.selected.usergroupid}" title="#{bundle.CreateSiteuserTitle_usergroupid}" >
+                        <f:selectItems value="#{usergroupController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateSiteuserLabel_merchantid}" for="merchantid" />
+                    <h:selectOneMenu id="merchantid" value="#{siteuserController.selected.merchantid}" title="#{bundle.CreateSiteuserTitle_merchantid}" >
+                        <f:selectItems value="#{merchantController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{siteuserController.create}" value="#{bundle.CreateSiteuserSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{siteuserController.prepareList}" value="#{bundle.CreateSiteuserShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateSiteuserIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

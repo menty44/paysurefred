@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml">
+
+    <ui:define name="title">
+        BatchHeaders
+    </ui:define>
+
+    <ui:define name="body">
+            <link rel="stylesheet" media="all" type="text/css" href="/merchant/web/css/jquery-ui-1.8.6.custom.css" />
+            <script type="text/javascript" src="/merchant/web/js/jquery-1.4.4.min.js"></script>
+            <script type="text/javascript" src="/merchant/web/js/jquery-ui-1.8.6.custom.min.js"></script>
+            <script type="text/javascript" src="/merchant/web/js/jquery-ui-timepicker-addon.js"></script>  
+           
+        <h:form id="form" >
+            <p:growl id="growl" showDetail="true"/> 
+            <br></br><br></br><br></br><br></br><br></br>
+            <p:dataTable value="#{showHeaders.batchheaders}" var="item" rowIndexVar="#{item.id}" selection="#{showHeaders.batchheader}" selectionMode="single">                    
+                <p:column style="background-color: #eb8f00;">
+                    <f:facet name="header" class="menu">                       
+                        Id
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Batch Name
+                    </f:facet>
+                    <h:outputText value="#{item.batchname}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Status
+                    </f:facet>
+                    <h:outputText value="#{item.status}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Requests
+                    </f:facet>
+                    <h:outputText value="#{item.requests}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Description
+                    </f:facet>
+                    <h:outputText value="#{item.description}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Merchant
+                    </f:facet>
+                    <h:outputText value="#{item.merchantid.name}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Session
+                    </f:facet>
+                    <h:outputText value="session value"/>
+                </p:column>
+                <p:column>                                        
+                    <h:commandLink action="#{batchheaderController.upload2}" value="View">
+                        <f:param name="index" value="#{batchheaderController.selected.id}"/>                    
+                    </h:commandLink>
+                    <h:outputText value="  "/>
+                    <h:commandLink action="#{batchheaderController.prepareEdit}" value="#{bundle.ListBatchheaderEditLink}"/>
+                    <h:outputText value="  "/>
+                    <h:commandLink action="#{batchheaderController.destroy}" value="#{bundle.ListBatchheaderDestroyLink}"/>
+                    <h:outputText value="  "/>
+                    <h:commandLink action="#{batchheaderController.upload}" value="Upload"/> 
+                    <h:outputText value="  "/>
+                    <h:commandLink id="link" action="#{batchheaderController.savePurchaseFromItem}" value="Email" onclick="$('#progress').show()" oncomplete="$('#progress').hide()">
+                    </h:commandLink>
+                </p:column> 
+            </p:dataTable>
+            <br />
+            
+            Joseph Gitonga Njeru
+            
+            <h:commandLink action="#{batchheaderController.prepareCreate}" value="#{bundle.ListBatchheaderCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListBatchheaderIndexLink}" action="/index" immediate="true" />  
+        </h:form>           
+    </ui:define>
+    <ui:define name="footer">
+        Paysure Limited @copyright 2009-2013
+    </ui:define>
+</ui:composition>

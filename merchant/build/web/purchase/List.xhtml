@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:define name="title">
+        <h:outputText value="Payment Link Request List"></h:outputText>
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">    
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="block"/>                
+            </h:panelGroup>            
+            <p:dataTable  id="tbl" value="#{purchaseController.getpurchases()}" var="item" paginator="true" rows="10" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,20" style="border:solid 1px">
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPurchaseTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPurchaseTitle_amount}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.amount}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPurchaseTitle_systemtraceno}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.systemtraceno}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPurchaseTitle_referenceno}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.referenceno}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPurchaseTitle_transmission}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.transmission}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPurchaseTitle_purchasedate}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.purchasedate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />                    
+                    </h:outputText>
+                </p:column>
+                <p:column filterBy="#{item.clientname}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPurchaseTitle_clientname}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.clientname}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPurchaseTitle_transactionsource}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.transactionsourceid.name}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPurchaseTitle_statusid}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.statusid}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="&nbsp;"/>
+                    </f:facet>
+                    <h:commandLink action="#{purchaseController.prepareView}" value="#{bundle.ListPurchaseViewLink}" class="viewbutton"/>
+                    <h:outputText value=""/>
+                </p:column> 
+            </p:dataTable>
+            <br/>
+            <h:commandButton value="Excel Export">
+                <p:dataExporter target="tbl" type="xls" fileName="brrrrr"/>                
+            </h:commandButton>
+            <h:commandLink action="#{purchaseController.prepareCreate}" value="#{bundle.ListPurchaseCreateLink}"/><br/>
+            <br/>
+            
+            <h:commandLink value="#{bundle.ListPurchaseIndexLink}" action="/index" immediate="true" />
+        </h:form>        
+    </ui:define>
+
+</ui:composition>

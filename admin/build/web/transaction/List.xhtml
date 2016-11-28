@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.prime.com.tr/ui">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTransactionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTransactionEmpty}" rendered="#{transactionController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{transactionController.items.rowCount > 0}">
+                    <p:dataTable value="#{transactionController.items}" var="item" 
+                         paginator="true" rows="10" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15,20" style="border:solid 1px">    
+                        
+                            <f:facet name="header">
+                                View Transaction
+                            </f:facet>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Id"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Date"/>
+                            </f:facet>
+                            <h:outputText value="#{item.created}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTransactionTitle_merchantname}" style="float: left"/>
+                            </f:facet>
+                            <h:outputText value="#{item.merchantname}" style="float: left"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Refno"/>
+                            </f:facet>
+                            <h:outputText value="#{item.refno}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTransactionTitle_statusid}" style="float: left"/>
+                            </f:facet>
+                            <h:outputText value="#{item.statusid.description}" style="float: left"/>
+                        </p:column>                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Description" style="float: left"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}" style="float: left"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Clientname" style="float: left"/>
+                            </f:facet>
+                            <h:outputText value="#{item.clientname}" style="float: left"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Email" style="float: left"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}" style="float: left"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Cardtype"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cardtype}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTransactionTitle_amount}" style="float: right"/>
+                            </f:facet>
+                            <h:outputText value="#{item.amount}" style="float: right"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{transactionController.prepareView}" value="#{bundle.ListTransactionViewLink}"/>
+
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{transactionController.prepareCreate}" value="#{bundle.ListTransactionCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListTransactionIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+</ui:composition>
+
+

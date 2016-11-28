@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCountryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCountryEmpty}" rendered="#{countryController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{countryController.items.rowCount > 0}">
+                    <h:outputText value="#{countryController.pagination.pageFirstItem + 1}..#{countryController.pagination.pageLastItem + 1}/#{countryController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{countryController.previous}" value="#{bundle.Previous} #{countryController.pagination.pageSize}" rendered="#{countryController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{countryController.next}" value="#{bundle.Next} #{countryController.pagination.pageSize}" rendered="#{countryController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{countryController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCountryTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCountryTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCountryTitle_code}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.code}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCountryTitle_status}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCountryTitle_created}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.created}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCountryTitle_modified}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.modified}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{countryController.prepareView}" value="#{bundle.ListCountryViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{countryController.prepareEdit}" value="#{bundle.ListCountryEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{countryController.destroy}" value="#{bundle.ListCountryDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{countryController.prepareCreate}" value="#{bundle.ListCountryCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListCountryIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

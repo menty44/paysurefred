@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://196.216.64.237:8080/webdirect/onlinepay?wsdl" uri="wsdl/196.216.64.237_8080/webdirect/onlinepay.wsdl"/>
+    <system systemId="http://196.216.64.237:8080/webdirect/onlinepay?xsd=1" uri="wsdl/196.216.64.237_8080/webdirect/onlinepay.xsd_1.xsd"/>
+</catalog>

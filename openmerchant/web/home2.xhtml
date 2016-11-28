@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Bill Payments</title>
+        <link href="main.css" rel="stylesheet" type="text/css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <link rel="image_src" href="https://epayments.paysure.co.ke/logo/paysurelimited.png" />
+        <script type="text/javascript">
+            //<![CDATA[ 
+            var cot_loc0=(window.location.protocol == "https:")? "https://secure.comodo.net/trustlogo/javascript/cot.js" :
+                "http://www.trustlogo.com/trustlogo/javascript/cot.js";
+            document.writeln('<scr' + 'ipt language="JavaScript" src="'+cot_loc0+'" type="text\/javascript">' + '<\/scr' + 'ipt>');
+            //]]>
+        </script>
+    </h:head>
+    <h:body>
+        <!-- Save for Web Slices (Portal Landing Page.pdf) -->
+        <span class="wet-boew-sessiontimeout" data-wet-boew='{"inactivity": 30000, "logouturl": "http://wet-boew.github.io/wet-boew/demos/index-eng.html"}'></span>
+        <table id="mainbg" width="1583" height="863" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td rowspan="5">&nbsp;</td>
+                <td colspan="5" height="1"></td>
+            </tr>
+            <tr>
+                <br/><td rowspan="4" valign="top" id="head-1">Bill Payments</td>
+                <td colspan="2" valign="top" height="220">
+                    <a href="https://paysure.co.ke"><img src="https://epayments.paysure.co.ke/logo/openmerchant/poweredby.png" width="292" height="" alt="" style="margin-bottom: 200px"/></a></td>
+                <td colspan="2" rowspan="2">&nbsp;</td>
+            </tr>
+
+            <tr>                
+                <td colspan="2" height="50px" valign="top" id="head-1">Search for a Merchant</td>
+            </tr>
+            <tr id="out">
+                <td  height="" rowspan="" id="text-1" valign="top"></td>
+                <td id="input" colspan="" height="" valign="top">
+
+
+
+
+                    <h:panelGroup rendered="#{bean.isUsd}">                    
+                        <h:form>
+                            <h:outputText value="Choose Merchant to Pay" style="margin-left: -220px; padding-right: 21px;"/>
+                            <h:selectOneMenu  id="mn" value="#{bean.mname}" onchange="submit()"
+                                              valueChangeListener="#{bean.merchantMnameChanged}">
+                                <f:selectItem itemLabel="Select Merchant" ItemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{bean.merchants}" var="merchant" itemLabel="#{merchant.name}" itemValue="#{merchant.name}" />                                                                                       
+                            </h:selectOneMenu>                          
+                        </h:form>
+                    </h:panelGroup>   
+                </td>                
+            </tr>                                  
+            <tr>
+                <td colspan="2">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="images/spacer.gif" width="12" height="1" alt=""/></td>
+                <td>
+                    <img src="images/spacer.gif" width="282" height="1" alt=""/></td>
+                <td>
+                    <img src="images/spacer.gif" width="255" height="1" alt=""/></td>
+                <td>
+                    <img src="images/spacer.gif" width="37" height="1" alt=""/></td>
+                <td>
+                    <img src="images/spacer.gif" width="285" height="1" alt=""/></td>
+                <td>
+                    <img src="images/spacer.gif" width="712" height="1" alt=""/></td>
+            </tr>
+        </table>
+        <img src="https://epayments.paysure.co.ke/logo/cot.gif" alt="image" style="float: left; width:10px; height:50px; border:0;" />
+        <!-- End Save for Web Slices -->
+        <a href="http://www.instantssl.com" id="comodoTL">Premium SSL Certificate</a>
+        <script language="JavaScript" type="text/javascript">
+            COT("https://epayments.paysure.co.ke/logo/cot.gif", "SC2", "none");
+        </script>
+
+    </h:body>
+</html>
+

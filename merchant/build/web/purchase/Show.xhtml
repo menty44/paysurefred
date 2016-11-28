@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml" > 
+        <ui:define name="title">
+            Purchases            
+        </ui:define>
+        <ui:define name="body">    
+            <link rel="stylesheet" media="all" type="text/css" href="/merchant/web/css/jquery-ui-1.8.6.custom.css" />
+            
+            <script type="text/javascript" src="/merchant/web/js/jquery-ui-1.8.6.custom.min.js"></script>
+            <script type="text/javascript" src="/merchant/web/js/jquery-ui-timepicker-addon.js"></script>            
+            <h:form id="form">
+                <p:growl id="growl" showDetail="true"/>
+                <div>                     
+                    <h:commandButton value="Refresh" />
+                    <h:commandButton value="Excel Export">
+                        <p:dataExporter target="tbl" type="xls" fileName="transactions_#{showPurchases.date}"/>
+                    </h:commandButton>
+                </div><br></br><br></br><br></br>
+                <p:dataTable id="tbl" value="#{showPurchases.purchases}" var="item" selection="#{showPurchases.current}" selectionMode="single" rowIndexVar="#{item.id}" rowKey="#{item.id}" paginator="true" rows="5" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15,20">                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Purchase Date"/>                            
+                        </f:facet>
+                        <h:outputText value="#{item.purchasedate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Referenceno No"/>                            
+                        </f:facet>
+                        <h:outputText value="#{item.referenceno}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Client Name" style="float: left"/>                            
+                        </f:facet>
+                        <h:outputText value="#{item.clientname}" style="float: left"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Email" style="float: left"/>                            
+                        </f:facet>
+                        <h:outputText value="#{item.email}" style="float: left"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="CY"/>                            
+                        </f:facet>                                                
+                        <h:outputText value="#{item.currency}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Amount" style="float: right"/>                            
+                        </f:facet>
+                        <h:outputText value="#{item.amount/100}" style="float: right"/>
+                    </p:column>                                                        
+                </p:dataTable>                 
+                <h:commandLink action="Create.xhtml" value="#{bundle.ListPurchaseCreateLink}"/><br/>                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

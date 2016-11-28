@@ -1,0 +1,68 @@
+/* 
+    Document   : style
+    Created on : Sep 6, 2012, 4:44:10 PM
+    Author     : paysure
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+body{
+    background-color: white;
+}
+#whole{
+    width: 100%;
+}
+#header{
+    width: 80%;
+    float: left;
+}
+#heading{
+    margin-top: 80px;
+    float: left;
+}
+h2{
+    margin-left: 350px;
+}
+#visa{
+    margin-left: 350px;
+}
+#form{
+    margin-left: 400px;
+    
+}
+/*success page css below*/
+.tags{
+    color: blue;
+    font-family: monospace;
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
+    /*border: 1px solid;*/
+}
+.position{
+    margin: 0 auto;
+    margin-top: 10px;    
+    /*border: 1px solid red;*/
+    width: 50%;
+}
+.four{
+    margin: 0 auto;
+    margin-top: 15px;
+    /*border: 1px solid red;*/
+    width: 18%;    
+}
+.powered{
+    margin: 0 auto;    
+    margin-left: 45px;
+    font-size: 20px;
+    
+}
+.five{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 2px;
+    /*border: 1px solid red;*/
+}
